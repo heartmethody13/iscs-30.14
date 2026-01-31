@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=4 uid="uid://bto5mjmfy4qo0"]
+[gd_scene load_steps=37 format=4 uid="uid://bto5mjmfy4qo0"]
 
 [ext_resource type="Script" uid="uid://6gr775m4pqv7" path="res://player.gd" id="1_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://cniubvrivcupg" path="res://girl.png" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://dsgqdj6fcpe0b" path="res://snow.png" id="2_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://cb85xaeqscws1" path="res://tilemap.png" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://chly2xi4ouaou" path="res://teleporter.gd" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://d1vyhtfa6ndy1" path="res://620935920_25314806674887708_1518612640419826782_n.png" id="6_7mycd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("3_h2yge")
@@ -9505,6 +9506,28 @@ texture = ExtResource("3_h2yge")
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_5vw27")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
+atlas = ExtResource("3_h2yge")
+region = Rect2(32, 352, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
+atlas = ExtResource("3_h2yge")
+region = Rect2(32, 320, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kek77"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_272bh")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_5vw27")
+}],
+"loop": true,
+"name": &"red_flower",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_1bvp3"]
 radius = 15.0
 
@@ -9604,6 +9627,140 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
 size = Vector2(29, 29)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kek77"]
+texture = ExtResource("6_7mycd")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_4c57u"]
+tile_size = Vector2i(6, 6)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_kek77")
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Map" type="Node2D" parent="."]
@@ -9638,6 +9795,85 @@ tile_set = SubResource("TileSet_7mycd")
 [node name="shrubs" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_kek77")
 
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Area2D2"]
+position = Vector2(347, -16)
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"red_flower"
+autoplay = "red_flower"
+frame_progress = 0.7605936
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Area2D2"]
+position = Vector2(347, -16)
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"red_flower"
+autoplay = "red_flower"
+frame_progress = 0.8996626
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Area2D2"]
+position = Vector2(347, -16)
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"red_flower"
+autoplay = "red_flower"
+frame_progress = 0.8996626
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D2"]
+position = Vector2(256, 15)
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"red_flower"
+autoplay = "red_flower"
+frame_progress = 0.96164787
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D2/AnimatedSprite2D"]
+position = Vector2(287, 9)
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"red_flower"
+autoplay = "red_flower"
+frame_progress = 0.7881261
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D2/AnimatedSprite2D/AnimatedSprite2D"]
+position = Vector2(-47, 0)
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"red_flower"
+autoplay = "red_flower"
+frame_progress = 0.7881261
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D2/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D"]
+position = Vector2(307, -191)
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"red_flower"
+autoplay = "red_flower"
+frame_progress = 0.7881261
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D2/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D"]
+position = Vector2(-54, 0)
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"red_flower"
+autoplay = "red_flower"
+frame_progress = 0.7881261
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D2/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D"]
+position = Vector2(-35, -1)
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"red_flower"
+autoplay = "red_flower"
+frame_progress = 0.7881261
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D2/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D"]
+position = Vector2(-33, -1)
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"red_flower"
+autoplay = "red_flower"
+frame_progress = 0.7881261
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D2/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D/AnimatedSprite2D"]
+position = Vector2(94, 2)
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"red_flower"
+autoplay = "red_flower"
+frame_progress = 0.7881261
+
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(113, -111)
 script = ExtResource("1_1bvp3")
@@ -9667,6 +9903,8 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="destination" type="Marker2D" parent="teleporter"]
 position = Vector2(-240, -204)
 
-[node name="Area2D2" type="Area2D" parent="."]
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+scale = Vector2(0.82970357, 3.6889563)
+tile_set = SubResource("TileSet_4c57u")
 
 [connection signal="body_entered" from="teleporter" to="teleporter" method="_on_body_entered"]
