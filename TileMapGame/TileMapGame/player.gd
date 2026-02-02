@@ -8,9 +8,10 @@ const SPEED = 32.0
 const TILE_SIZE = 32
 const INPUTS = {"ui_left": Vector2.LEFT, "ui_right": Vector2.RIGHT, "ui_up": Vector2.UP, "ui_down": Vector2.DOWN}
 const ANIMATION_SPEED = 4
+
 var moving = false
 var direction_last_facing = "down"
-
+var last_move_dir: Vector2 = Vector2.ZERO
 
 func _ready():
 	position = position.snapped(Vector2.ONE * TILE_SIZE)
@@ -39,6 +40,8 @@ func move(direction) -> void:
 		var speed_modifier = get_tile_speed()
 		var move_duration = 1.0 / (ANIMATION_SPEED * speed_modifier)
 		
+		last_move_dir = INPUTS[direction]
+		
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "position", position + INPUTS[direction] * TILE_SIZE, move_duration).set_trans(Tween.TRANS_LINEAR)
 		#tween.tween_property(self, "position", position + INPUTS[direction] * TILE_SIZE, 1.0 / ANIMATION_SPEED).set_ease(Tween.EASE_IN_OUT)
@@ -56,6 +59,12 @@ func move(direction) -> void:
 		var forced = get_forced_direction()
 		if forced != "":
 			move(forced)
+			
+		if is_on_ice() and last_move_dir != Vector2.ZERO:
+			for key in INPUTS.keys():
+				if INPUTS[key] == last_move_dir:
+					move(key)
+					return
 	else:
 		update_animations(INPUTS[direction].x, INPUTS[direction].y)
 		update_animations(0, 0)
@@ -71,6 +80,12 @@ func update_animations(h_dir, v_dir):
 	
 	if current_direction != null:
 		direction_last_facing = current_direction
+	
+	if is_on_ice():
+		sprite.play("walk_" + direction_last_facing)
+		sprite.stop()
+		sprite.frame = 0
+		return
 		
 	if h_dir == 0 and v_dir == 0:
 		sprite.play("walk_" + direction_last_facing)
@@ -99,13 +114,9 @@ func get_tile_speed() -> float:
 			var data = layer.get_cell_tile_data(cell)
 			
 			if data:
-				var tile_speed = data.get_custom_data("tile_speed")
-				
-				print("Checking Layer: ", layer.name, " | Value: ", tile_speed)
-				
+				var tile_speed = data.get_custom_data("tile_speed")		
 				if tile_speed != null and tile_speed > 0:
 					return tile_speed
-				print(tile_speed)
 	
 	return 1.0
 
@@ -126,3 +137,19 @@ func get_forced_direction() -> String:
 					return forced
 
 	return ""
+
+
+func is_on_ice() -> bool:
+	var layers = get_tree().get_nodes_in_group("tilemap")
+	layers.reverse()
+
+	for layer in layers:
+		if layer is TileMapLayer:
+			var local_pos = layer.to_local(global_position)
+			var cell = layer.local_to_map(local_pos)
+			var data = layer.get_cell_tile_data(cell)
+
+			if data:
+				return data.get_custom_data("ice") == true
+
+	return false
