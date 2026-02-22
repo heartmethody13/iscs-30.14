@@ -1,0 +1,11 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1769889077
+620935920_25314806674887708_1518612640419826782_n.png::CompressedTexture2D::9028994632596746350::1769889025::1769889078::1::::<><><>0<>0<>c8b55ee641759f44af70163216e9736b<>res://.godot/imported/620935920_25314806674887708_1518612640419826782_n.png-0f943d7359b5d9db4dd47d24f9ddd20a.ctex::
+girl.png::CompressedTexture2D::5703028612006012276::1769889025::1769889078::1::::<><><>0<>0<>6cd7bb0c983198860e9d0918de743506<>res://.godot/imported/girl.png-65a2715ad34f2d82dbc61833d2fc5569.ctex::
+icon.svg::CompressedTexture2D::1595701403752740190::1769889025::1769889078::1::::<><><>0<>0<>659ac3332d3b653f22df221d0d75ce1b<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+main.tscn::PackedScene::3750753432190618173::1769889025::0::1::::<><><>0<>0<><>::uid://6gr775m4pqv7::::res://player.gd<>uid://cniubvrivcupg::::res://girl.png<>uid://dsgqdj6fcpe0b::::res://snow.png<>uid://cb85xaeqscws1::::res://tilemap.png<>uid://chly2xi4ouaou::::res://teleporter.gd<>uid://d1vyhtfa6ndy1::::res://620935920_25314806674887708_1518612640419826782_n.png
+player.gd::GDScript::2189331481261273842::1769889025::0::1::::<>CharacterBody2D<><>0<>0<><>::
+snow.png::CompressedTexture2D::8436024853183755867::1769889025::1769889078::1::::<><><>0<>0<>a3702bd9e7d65349356f8f7ed205625a<>res://.godot/imported/snow.png-8fc270e39b7d8de8c01e5d1a513fe7a7.ctex::
+sprite_0.png::CompressedTexture2D::5736514313305827839::1769889025::1769889078::1::::<><><>0<>0<>4cb3d7e03eb6ebca23af3895a845f71b<>res://.godot/imported/sprite_0.png-799cc71c76b019a02978712956f937be.ctex::
+teleporter.gd::GDScript::5288378074141524880::1769889025::0::1::::<>Area2D<><>0<>0<><>::
+tilemap.png::CompressedTexture2D::4913017266881356806::1769889025::1769889078::1::::<><><>0<>0<>520b300b1ee41c46554f677d561dd1e5<>res://.godot/imported/tilemap.png-838486f2ee5f5764f6a08fbb86e9df3c.ctex::
