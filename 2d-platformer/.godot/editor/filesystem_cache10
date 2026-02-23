@@ -1,0 +1,22 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1771786004
+icon.svg::CompressedTexture2D::3289145199531581273::1771785889::1771786006::1::::<><><>0<>0<>343fad0238424d9b3d883a3f6e2cfecd<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://assets/::1771785889
+eilin_idle.png::CompressedTexture2D::7830968304994285468::1771785889::1771786006::1::::<><><>0<>0<>38d5bc950750662eac2a24da2b86d028<>res://.godot/imported/eilin_idle.png-becfa2edc19b925d0c5265c337831ce1.ctex::
+::res://assets/scenes/::1771785889
+::res://assets/scenes/areas/::1771785889
+area_1.tscn::PackedScene::921609740501445247::1771785889::0::1::::<><><>0<>0<><>::uid://otou2gfbi4uv::::res://assets/sprites/Tiles.png<>uid://dqff207j27lon::::res://assets/sprites/arcade_platformerV2.png<>uid://b1haheq6iarn4::::res://assets/sprites/Untitled design (5).png<>uid://cu63n617nrs27::::res://assets/scenes/areas/player.gd<>uid://fstmj0ibdgu2::::res://assets/sprites/character/634273436_26435132786091264_5515936255347826733_n.png<>uid://bkiwwrt3ybldh::::res://assets/sprites/character/639761316_895970723041970_3514868945410262966_n.png<>uid://bym20q0pggsdv::::res://assets/sprites/character/641656439_1253143580247836_1705697024439083700_n.png<>uid://25e66v0vjvja::::res://assets/sprites/character/632852351_4006642066292534_868194387624672925_n.png
+player.gd::GDScript::6242338911501692630::1771785889::0::1::::<>CharacterBody2D<><>0<>0<><>::
+::res://assets/sprites/::1771785889
+arcade_platformerV2.png::CompressedTexture2D::8292958602421150437::1771785889::1771786006::1::::<><><>0<>0<>a85aeb8bc1eaa7fd9fd5b98f9cd356ba<>res://.godot/imported/arcade_platformerV2.png-c4b889f48c3d9a6a539983c1971e282c.ctex::
+eilin_run.png::CompressedTexture2D::4161373044761302208::1771785889::1771786006::1::::<><><>0<>0<>229ab2e09b8bf6da68e33c5d4f44a9fd<>res://.godot/imported/eilin_run.png-e230a1e8cf3f708db57751dd7ba68036.ctex::
+girl.png::CompressedTexture2D::8234040179297699467::1771785889::1771786006::1::::<><><>0<>0<>fbf5487eda67824b9ba7417d428b1944<>res://.godot/imported/girl.png-3ce673d2c1d8c3c2b7014b95a974daa5.ctex::
+Tiles.png::CompressedTexture2D::1022754169664560033::1771785889::1771786006::1::::<><><>0<>0<>d00944fa60bf50b85851217f2a985ec1<>res://.godot/imported/Tiles.png-044d3e83eeffe7931a768ae012ee3520.ctex::
+Untitled design (5).png::CompressedTexture2D::4225793999347175931::1771785889::1771786006::1::::<><><>0<>0<>04c4b2952a0c5dae17163e7aa89cb0d9<>res://.godot/imported/Untitled design (5).png-4303004bb4b01fad4bd2ceed6e65ecc4.ctex::
+::res://assets/sprites/character/::1771785889
+632852351_4006642066292534_868194387624672925_n.png::CompressedTexture2D::1957330000259859454::1771785889::1771786006::1::::<><><>0<>0<>e2a24925ada44fc8274ba2ec8c6245d8<>res://.godot/imported/632852351_4006642066292534_868194387624672925_n.png-2c8ce5b11f3f02d4cf634b76459d786c.ctex::
+633738738_1543379056745194_2482354396783780088_n.png::CompressedTexture2D::9203477263921071983::1771785889::1771786006::1::::<><><>0<>0<>fe9cb469d42a5d20843f27034c8aebfb<>res://.godot/imported/633738738_1543379056745194_2482354396783780088_n.png-ecc86e10a5eebfdae394d71dd30dc9eb.ctex::
+634273436_26435132786091264_5515936255347826733_n.png::CompressedTexture2D::389278581847866435::1771785889::1771786006::1::::<><><>0<>0<>6b95cab5b534e3e319e5a28b6bc7c0e8<>res://.godot/imported/634273436_26435132786091264_5515936255347826733_n.png-fdac20573bc185f67aca5fbf6cb1d3f1.ctex::
+634337015_1445111557011233_687189758047545227_n.png::CompressedTexture2D::6045387217984001319::1771785889::1771786006::1::::<><><>0<>0<>25f0f3fe6aeb8319b181b6c49f1a7136<>res://.godot/imported/634337015_1445111557011233_687189758047545227_n.png-ffcb343224967fc4dee42497e1a05fde.ctex::
+639761316_895970723041970_3514868945410262966_n.png::CompressedTexture2D::3106200126965225441::1771785889::1771786006::1::::<><><>0<>0<>e5babad3f4d275437579505e6d10c127<>res://.godot/imported/639761316_895970723041970_3514868945410262966_n.png-50e094d4b30952cce5b5c74b3bd5803f.ctex::
+641656439_1253143580247836_1705697024439083700_n.png::CompressedTexture2D::4097410347390431347::1771785889::1771786006::1::::<><><>0<>0<>616cf01432e690e79abd74c63313aaa9<>res://.godot/imported/641656439_1253143580247836_1705697024439083700_n.png-472b46e064279401e24211e6874228fd.ctex::
