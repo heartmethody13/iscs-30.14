@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var jump_speed = -400
 @export var gravity = 1200
 
+var spring = -600
 
 func _physics_process(delta):
 	# Add gravity every frame
@@ -17,3 +18,7 @@ func _physics_process(delta):
 	# Only allow jumping when on the ground
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_speed
+
+
+func _on_spring_body_entered(body: Node2D) -> void:
+	velocity.y = spring
