@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var gravity = 1200
 var direction_last_facing = "right"
 
+var spring = -600
+
 func _physics_process(delta):
 	# Add gravity every frame
 	
@@ -22,7 +24,8 @@ func _physics_process(delta):
 		velocity.x = direction * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
-	update_animations(direction)
+	
+  update_animations(direction)
 	move_and_slide()
 	# Only allow jumping when on the ground
 		
@@ -45,3 +48,7 @@ func update_animations(direction):
 	else:
 		sprite.play("walk")
 		await sprite.animation_finished
+
+
+func _on_spring_body_entered(body: Node2D) -> void:
+	velocity.y = spring
