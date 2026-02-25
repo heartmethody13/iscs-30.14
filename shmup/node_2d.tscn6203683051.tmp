@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://djjs4h8bvdhvd"]
+
+[ext_resource type="Texture2D" uid="uid://bho6n2h5ml4vl" path="res://ship7.png" id="1_wtcfe"]
+[ext_resource type="Script" uid="uid://baelktluidufu" path="res://player.gd" id="2_0e48y"]
+
+[node name="Node2D" type="Node2D" unique_id=617767222]
+
+[node name="Player" type="Sprite2D" parent="." unique_id=790614759]
+position = Vector2(293.99997, 796)
+scale = Vector2(0.8218391, 0.8218391)
+texture = ExtResource("1_wtcfe")
+script = ExtResource("2_0e48y")
+speed = null
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=364813590]
+position = Vector2(-357.73422, -968.5594)
+scale = Vector2(1.2167832, 1.2167832)
+anchor_mode = 0
+process_callback = 0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player" unique_id=1451401234]
+polygon = PackedVector2Array(80.30771, 127.76227, 88.825195, 105.86017, 87.60843, -12.167847, 68.13989, -63.272705, 64.48953, -18.251709, 60.839172, -13.3845825, 60.839172, 8.517517, 60.839172, 8.517517, 37.720306, -8.517456, 37.720306, -27.986023, 40.15387, -30.419556, 36.50351, -51.10486, 41.370667, -51.10486, 40.15387, -74.223755, 36.50351, -77.874084, 36.50351, -96.125854, 21.90213, -97.34265, 14.60144, -126.54541, -1.2167664, -135.06293, -18.251709, -127.76221, -24.335632, -99.776184, -37.720245, -97.34265, -37.720245, -76.65735, -41.370605, -69.35663, -41.370605, -52.321655, -36.50348, -48.671326, -40.15381, -29.202759, -34.069885, -25.55243, -40.15381, -21.9021, -40.15381, -9.734253, -59.622345, 6.0839233, -59.622345, -17.034973, -65.70627, -21.9021, -64.48947, -65.7063, -87.60837, -13.3845825, -88.825134, 103.426575, -81.524445, 132.62933, -65.70627, 107.076965, -62.05591, 85.174866, -36.50348, 86.39166, -36.50348, 94.90912, -37.720245, 119.24481, 38.937103, 118.028015, 35.286743, 92.475525, 35.286743, 87.60846, 62.05597, 85.174866, 65.70633, 100.99298, 65.70633, 109.51044)
