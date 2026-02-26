@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqe47hlg6vbbd"]
+
+[ext_resource type="Texture2D" uid="uid://brawg3ou6vqv8" path="res://gameover.png" id="1_ae154"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ae154")
+stretch_mode = 5

@@ -1,60 +1,87 @@
 extends CharacterBody2D
-#@onready var sprite = $Sprite2D
-@export var speed = 650
-const PROJECTILE = preload("res://player_projectile.tscn")
-@onready var muzzle = $Muzzle
-@onready var sprite = $AnimatedSprite2D
-@export var health: int = 100
-@export var damage: int = 50
 
-var is_dead := false
+@export var speed: float = 350.0
+@export var max_health: int = 100
+@export var death_freeze_time: float = 0.35
 
-#func _ready() -> void:
-	#connect("area_entered", _on_area_entered)
-#func _process(delta):
-	#if !is_alive:
-		#return
+var health: int
+var is_dead: bool = false
 
-func _physics_process(delta: float) -> void:
-	var move = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	if move:
-		velocity = move * speed
-	else:
-		velocity = Vector2.ZERO
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-	#print(position.x, position.y)
-	move_and_slide()
-	
-	if Input.is_action_just_pressed("shoot"):		
-		var new_projectile = PROJECTILE.instantiate()
-		new_projectile.global_position = muzzle.global_position
-		add_sibling(new_projectile)
-		
-func take_damage(amount):
-	health -= amount
-	print("YOU GOT HIT")
-	print(health)
-	if health <= 0:
-		print("YOU DIED")
-		sprite.play("explode")
-		#sprite.stop()
-		await sprite.animation_finished
-		queue_free()		
+func _ready() -> void:
+	health = max_health
+	add_to_group("player")
+
+func _physics_process(_delta: float) -> void:
+	if is_dead:
 		return
-		#die()
-	sprite.play("default")
+
+	var dir := Vector2(
+		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
+		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	).normalized()
+
+	velocity = dir * speed
+	move_and_slide()
 
 
-#func die():
-	#is_dead = true
-	#collision_layer = 0
-	#collision_mask = 0
-	#velocity = Vector2.ZERO
-#
-	#sprite.play("explode")
-	#await sprite.animation_finished
-	#
-	#set_physics_process(false)
-	#$CollisionPolygon2D.disabled = true
-#
-	#queue_free()
+func take_damage(amount: int) -> void:
+	if is_dead:
+		return
+
+	health -= amount
+	print("Player hit! HP =", health)
+
+	if health <= 0:
+		_die()
+
+
+func _die() -> void:
+	is_dead = true
+	print("Player died!")
+
+	velocity = Vector2.ZERO
+	set_physics_process(false)
+	set_process(false)
+
+	if has_node("CollisionShape2D"):
+		$CollisionShape2D.disabled = true
+	if has_node("CollisionPolygon2D"):
+		$CollisionPolygon2D.disabled = true
+
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	sprite.process_mode = Node.PROCESS_MODE_ALWAYS
+
+	if sprite.sprite_frames and sprite.sprite_frames.has_animation("explode"):
+		sprite.play("explode")
+	else:
+		visible = false
+
+	get_tree().paused = true
+
+	await get_tree().create_timer(death_freeze_time, true).timeout
+	_cleanup_everything_except_background()
+
+
+@export var game_over_ui_scene: PackedScene
+@export var background_node_name := "ParallaxBackground"
+
+func _cleanup_everything_except_background() -> void:
+	var root := get_tree().current_scene
+	if root == null:
+		return
+
+	var bg := root.get_node_or_null(background_node_name)
+	if bg:
+		bg.process_mode = Node.PROCESS_MODE_ALWAYS
+
+	for child in root.get_children():
+		if child == bg:
+			continue
+		child.queue_free()
+
+	if game_over_ui_scene:
+		var ui = game_over_ui_scene.instantiate()
+		root.add_child(ui)
+		ui.process_mode = Node.PROCESS_MODE_ALWAYS

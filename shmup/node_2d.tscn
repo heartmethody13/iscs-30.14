@@ -1,12 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://djjs4h8bvdhvd"]
+[gd_scene load_steps=20 format=3 uid="uid://djjs4h8bvdhvd"]
 
 [ext_resource type="Texture2D" uid="uid://bho6n2h5ml4vl" path="res://ship7.png" id="1_wtcfe"]
 [ext_resource type="Script" uid="uid://baelktluidufu" path="res://player.gd" id="2_0e48y"]
+[ext_resource type="PackedScene" uid="uid://dqe47hlg6vbbd" path="res://game_over_UI.tscn" id="2_4d7sh"]
 [ext_resource type="Texture2D" uid="uid://bdu674wk5mrox" path="res://bubble.png" id="3_d21ai"]
 [ext_resource type="Script" uid="uid://c6ybkgxn7rdu3" path="res://parallax_2d.gd" id="3_epypp"]
 [ext_resource type="Texture2D" uid="uid://bwdu3i38yw0n3" path="res://galaxy.png" id="4_0hol4"]
 [ext_resource type="Script" uid="uid://lank75cuik4d" path="res://asteroid_spawner.gd" id="5_kdubu"]
 [ext_resource type="PackedScene" uid="uid://82k22h2s8l0d" path="res://asteroid.tscn" id="5_q6r6c"]
+[ext_resource type="Script" uid="uid://duisl0kmaow64" path="res://game_manager.gd" id="8_rj586"]
 
 [sub_resource type="GDScript" id="GDScript_d21ai"]
 
@@ -74,6 +76,7 @@ script = SubResource("GDScript_d21ai")
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("2_0e48y")
+game_over_ui_scene = ExtResource("2_4d7sh")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
 position = Vector2(0, 311)
@@ -138,3 +141,6 @@ asteroid_scene = ExtResource("5_q6r6c")
 [node name="SpawnTimer" type="Timer" parent="AsteroidSpawner"]
 wait_time = 0.8
 autostart = true
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("8_rj586")

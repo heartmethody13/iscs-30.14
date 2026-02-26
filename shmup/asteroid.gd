@@ -9,13 +9,11 @@ var speed = 200
 var fire_timer : float = 0.0
 
 var rng = RandomNumberGenerator.new()
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connect("body_entered", _on_body_entered)
 	randomize()
-	pass # Replace with function body.
+	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	translate(Vector2.DOWN * speed * delta)
 	fire_timer -= delta
@@ -45,7 +43,5 @@ func take_damage(amount):
 		#sprite.play("default")
 
 func _on_body_entered(body: Node2D) -> void:
-	if(body.is_in_group("player")):
+	if body.is_in_group("player") and body.has_method("take_damage"):
 		body.take_damage(damage)
-		take_damage(body.damage)
-		print("COLLISION")
