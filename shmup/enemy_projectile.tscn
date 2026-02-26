@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbg8mntc7w7ru"]
+
+[ext_resource type="Script" uid="uid://ueg8twhme281" path="res://enemy_projectile.gd" id="1_vpq67"]
+[ext_resource type="Texture2D" uid="uid://c4x6biwadu1qq" path="res://rock sheet.png" id="2_ccnu0"]
+[ext_resource type="Texture2D" uid="uid://bdu674wk5mrox" path="res://bubble.png" id="4_howdh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_howdh"]
+radius = 17.0
+height = 60.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gfwb"]
+atlas = ExtResource("2_ccnu0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf1ok"]
+atlas = ExtResource("4_howdh")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc61r"]
+atlas = ExtResource("4_howdh")
+region = Rect2(238, 0, 223, 219)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu1tu"]
+atlas = ExtResource("4_howdh")
+region = Rect2(513, 0, 237, 246)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw4ug"]
+atlas = ExtResource("4_howdh")
+region = Rect2(797, 0, 263, 260)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oe428"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gfwb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_bf1ok")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_mc61r")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_lu1tu")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_tw4ug")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 16.0
+}]
+
+[node name="Enemy_projectile" type="Area2D" groups=["game_objects", "projectile"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_vpq67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 87)
+shape = SubResource("CapsuleShape2D_howdh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 90)
+rotation = 4.712389
+sprite_frames = SubResource("SpriteFrames_oe428")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

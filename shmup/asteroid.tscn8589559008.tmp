@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://82k22h2s8l0d"]
+
+[ext_resource type="Script" uid="uid://dvdfhw668iypf" path="res://asteroid.gd" id="1_p0ukn"]
+[ext_resource type="Texture2D" uid="uid://c4x6biwadu1qq" path="res://rock sheet.png" id="2_gm5ib"]
+[ext_resource type="Texture2D" uid="uid://dyn4lf6qc5m6b" path="res://cannonbobmouth.png" id="2_p0ukn"]
+[ext_resource type="Script" uid="uid://ueg8twhme281" path="res://enemy_projectile.gd" id="3_8gfwb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm5ib"]
+atlas = ExtResource("2_p0ukn")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mc61r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm5ib")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8gfwb"]
+radius = 46.840153
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gfwb"]
+atlas = ExtResource("2_gm5ib")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lu1tu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gfwb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tw4ug"]
+radius = 17.0
+height = 60.0
+
+[node name="Asteroid" type="Area2D"]
+collision_layer = 8
+collision_mask = 6
+script = ExtResource("1_p0ukn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4.7683716e-07)
+scale = Vector2(5.2538013, 5.259003)
+sprite_frames = SubResource("SpriteFrames_mc61r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_8gfwb")
+
+[node name="Enemy_projectile" type="Area2D" parent="."]
+script = ExtResource("3_8gfwb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy_projectile"]
+position = Vector2(3, 90)
+rotation = 4.712389
+sprite_frames = SubResource("SpriteFrames_lu1tu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_projectile"]
+position = Vector2(-1, 87)
+shape = SubResource("CapsuleShape2D_tw4ug")
+
+[connection signal="area_entered" from="." to="Enemy_projectile" method="_on_asteroid_area_entered"]
