@@ -1,12 +1,11 @@
 extends Node2D
 
 @export var unit_name: String = "Unit"
-@export var team: String = "player"
+@export var team: String = "enemy"
 @export var max_hp: int = 100
 @export var hp: int = 100
 @export var attacks = [
-	{"name": "Astral Cataclysm", "damage": 25},
-	{"name": "Arcane Nova", "damage": 18}
+	{"name": "Shuriken Tempest", "damage": 17}
 ]
 
 @onready var hp_bar: ProgressBar = $hpbar

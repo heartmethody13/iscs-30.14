@@ -1,6 +1,40 @@
-[gd_scene load_steps=12 format=3 uid="uid://v3hhqbam47ro"]
+[gd_scene load_steps=22 format=3 uid="uid://v3hhqbam47ro"]
 
 [ext_resource type="Texture2D" uid="uid://x63qylav0ykd" path="res://Ninja HD Sample.png" id="1_buaqa"]
+[ext_resource type="Script" uid="uid://cdre108ql4vat" path="res://ninja.gd" id="1_lbaip"]
+[ext_resource type="Texture2D" uid="uid://bv046h4y2ic1x" path="res://hand_cursor0000.png" id="2_25rb4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25rb4"]
+atlas = ExtResource("1_buaqa")
+region = Rect2(0, 2016, 288, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbaip"]
+atlas = ExtResource("1_buaqa")
+region = Rect2(288, 2016, 288, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvjue"]
+atlas = ExtResource("1_buaqa")
+region = Rect2(576, 2016, 288, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5hew"]
+atlas = ExtResource("1_buaqa")
+region = Rect2(864, 2016, 288, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyd4q"]
+atlas = ExtResource("1_buaqa")
+region = Rect2(1152, 2016, 288, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b3yq"]
+atlas = ExtResource("1_buaqa")
+region = Rect2(1440, 2016, 288, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjnhy"]
+atlas = ExtResource("1_buaqa")
+region = Rect2(1728, 2016, 288, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aq14x"]
+atlas = ExtResource("1_buaqa")
+region = Rect2(2016, 2016, 288, 288)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qsp4k"]
 atlas = ExtResource("1_buaqa")
@@ -42,6 +76,35 @@ region = Rect2(2304, 0, 288, 288)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_25rb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbaip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvjue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5hew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyd4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b3yq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjnhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aq14x")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qsp4k")
 }, {
 "duration": 1.0,
@@ -74,12 +137,16 @@ animations = [{
 }]
 
 [node name="ninja" type="Node2D"]
+script = ExtResource("1_lbaip")
+attacks = Array[String](["Shuriken Tempest"])
 
 [node name="ninja" type="AnimatedSprite2D" parent="."]
 position = Vector2(826.6, 369)
 scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_25rb4")
+animation = &"attack"
 autoplay = "default"
+frame_progress = 0.39235497
 flip_h = true
 
 [node name="hpbar" type="ProgressBar" parent="."]
@@ -97,3 +164,10 @@ offset_right = 847.0
 offset_bottom = 323.0
 text = "Ninja"
 horizontal_alignment = 1
+
+[node name="focus" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(923, 446)
+scale = Vector2(2.0937498, 2.1328127)
+texture = ExtResource("2_25rb4")
+flip_h = true

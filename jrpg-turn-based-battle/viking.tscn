@@ -1,6 +1,44 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcpf44h0w6eqw"]
+[gd_scene load_steps=21 format=3 uid="uid://dcpf44h0w6eqw"]
 
+[ext_resource type="Script" uid="uid://bbq7uhivfgien" path="res://viking.gd" id="1_61038"]
 [ext_resource type="Texture2D" uid="uid://ivh7cckv83st" path="res://viking2.png" id="1_ytgu2"]
+[ext_resource type="Texture2D" uid="uid://bv046h4y2ic1x" path="res://hand_cursor0000.png" id="2_rpebc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpebc"]
+atlas = ExtResource("1_ytgu2")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61038"]
+atlas = ExtResource("1_ytgu2")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khltn"]
+atlas = ExtResource("1_ytgu2")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vwhe"]
+atlas = ExtResource("1_ytgu2")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jf4q"]
+atlas = ExtResource("1_ytgu2")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adjfm"]
+atlas = ExtResource("1_ytgu2")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1ded"]
+atlas = ExtResource("1_ytgu2")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7a8f"]
+atlas = ExtResource("1_ytgu2")
+region = Rect2(224, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa3kj"]
+atlas = ExtResource("1_ytgu2")
+region = Rect2(256, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ryguw"]
 atlas = ExtResource("1_ytgu2")
@@ -34,6 +72,38 @@ region = Rect2(192, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_rpebc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61038")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khltn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vwhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jf4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adjfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1ded")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7a8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wa3kj")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ryguw")
 }, {
 "duration": 1.0,
@@ -60,13 +130,16 @@ animations = [{
 }]
 
 [node name="viking" type="Node2D"]
+script = ExtResource("1_61038")
+unit_name = "Viking"
+attacks = Array[String](["Valhalla's Call"])
 
 [node name="viking" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(942.6, 282)
 scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_rpebc")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
 flip_h = true
 
@@ -84,3 +157,10 @@ offset_top = 217.0
 offset_right = 936.0
 offset_bottom = 240.0
 text = "Viking"
+
+[node name="focus" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1084, 354)
+scale = Vector2(2.0937498, 2.1328127)
+texture = ExtResource("2_rpebc")
+flip_h = true

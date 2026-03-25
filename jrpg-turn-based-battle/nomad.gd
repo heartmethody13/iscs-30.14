@@ -5,8 +5,8 @@ extends Node2D
 @export var max_hp: int = 100
 @export var hp: int = 100
 @export var attacks = [
-	{"name": "Astral Cataclysm", "damage": 25},
-	{"name": "Arcane Nova", "damage": 18}
+	{"name": "Sandbreaker Strike", "damage": 20},
+	{"name": "Nomad's Fury", "damage": 16}
 ]
 
 @onready var hp_bar: ProgressBar = $hpbar
