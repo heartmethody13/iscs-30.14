@@ -26,16 +26,9 @@ func _on_attack_pressed():
 
 
 func _on_attack_selected(attack: Dictionary):
-	print(attack)
-	# var attacks = current_entity.attacks
-
-
-	# var attack = attacks[index]
-
-	# print(attacks)
+	battle_ui.hide_all()
 
 	var targets = get_alive_enemies()
-	print(targets)
 	if targets.is_empty():
 		return
 
@@ -115,43 +108,8 @@ func player_turn():
 
 	battle_ui.show_command_menu(current_entity)
 
-	# build_attack_menu()
-
 	print("Player turn: choose target")
 	set_process_input(true)
-
-
-# func build_attack_menu():
-# 	clear_attack_options()
-
-# 	for attack in current_entity.attacks:
-# 		var button = attack_option_scene.instantiate()
-
-# 		attack_container.add_child(button)
-
-# 		# Setup attack data
-# 		button.text = attack["name"]
-
-# 		# Connect signal
-# 		button.pressed.connect(func(): on_attack_selected(attack))
-
-
-func on_attack_selected(attack: Dictionary):
-	var targets = get_alive_enemies()
-	if targets.is_empty():
-		return
-
-	var target = targets[selected_target_index]
-	var damage = attack["damage"]
-
-	print(current_entity.unit_name, " uses ", attack["name"], " on ", target.unit_name)
-
-	current_entity.play_anim("attack")
-	target.take_damage(damage)
-
-	clear_attack_options()
-
-	end_turn()
 
 
 func _input(event):
@@ -220,7 +178,9 @@ func enemy_turn():
 	var attack = current_entity.attacks[0]
 	var damage = attack["damage"]
 
-	print(current_entity.unit_name, " attacks ", target.unit_name)
+	battle_ui.show_action_text(
+		current_entity.unit_name + " uses " + attack["name"]
+	)
 
 	current_entity.play_anim("attack")
 	await current_entity.sprite.animation_finished
@@ -248,6 +208,7 @@ func get_alive_enemies() -> Array:
 # End Turn / Win Check
 # -------------------------
 func end_turn():
+	battle_ui.hide_action_text()
 	clear_attack_options()
 	set_process_input(false)
 
