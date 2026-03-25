@@ -1,8 +1,9 @@
-[gd_scene load_steps=61 format=3 uid="uid://c4fxs2wuodl6b"]
+[gd_scene load_steps=62 format=3 uid="uid://c4fxs2wuodl6b"]
 
 [ext_resource type="Script" uid="uid://d02xeytkrpj4a" path="res://nomad.gd" id="1_1bkwn"]
 [ext_resource type="Texture2D" uid="uid://csbewwelb8ddr" path="res://Nomad3_HD_NoBg.png" id="1_a3u0b"]
 [ext_resource type="Texture2D" uid="uid://bv046h4y2ic1x" path="res://hand_cursor0000.png" id="2_mf4oi"]
+[ext_resource type="LabelSettings" uid="uid://dii4683tocufc" path="res://label.tres" id="3_d0m5s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mf4oi"]
 atlas = ExtResource("1_a3u0b")
@@ -297,7 +298,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_02og0")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack1",
 "speed": 5.0
 }, {
@@ -374,7 +375,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gchso")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2",
 "speed": 5.0
 }, {
@@ -414,36 +415,46 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="nomad" type="Node2D"]
+[node name="nomad" type="Node2D" node_paths=PackedStringArray("sprite", "hp_bar", "pointer")]
 script = ExtResource("1_1bkwn")
 unit_name = "Nomad"
-attacks = Array[String](["Sandbreaker Strike", "Nomad's Fury"])
+attacks = Array[Dictionary]([{
+"animation": "attack1",
+"damage": 20,
+"name": "Sandbreaker Strike"
+}, {
+"animation": "attack2",
+"damage": 16,
+"name": "Nomad's Fury"
+}])
+sprite = NodePath("nomad")
+hp_bar = NodePath("hpbar")
+pointer = NodePath("focus")
 
 [node name="nomad" type="AnimatedSprite2D" parent="."]
-position = Vector2(169, 266)
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_mf4oi")
-animation = &"attack2"
+animation = &"attack1"
 autoplay = "idle"
-frame_progress = 0.09981633
 
 [node name="hpbar" type="ProgressBar" parent="."]
-offset_left = 108.0
-offset_top = 490.0
-offset_right = 247.0
-offset_bottom = 524.0
+offset_left = -61.0
+offset_top = 224.0
+offset_right = 78.0
+offset_bottom = 258.0
 value = 100.0
 show_percentage = false
 
 [node name="name" type="Label" parent="."]
-offset_left = 151.0
-offset_top = 199.0
-offset_right = 208.0
-offset_bottom = 222.0
+offset_left = -18.0
+offset_top = -67.0
+offset_right = 39.0
+offset_bottom = -44.0
 text = "Nomad"
+label_settings = ExtResource("3_d0m5s")
 
 [node name="focus" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(88, 343)
-scale = Vector2(2.0937498, 2.1328127)
+position = Vector2(-183, 105)
+scale = Vector2(2.09375, 2.13281)
 texture = ExtResource("2_mf4oi")
