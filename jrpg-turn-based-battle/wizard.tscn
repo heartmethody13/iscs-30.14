@@ -255,7 +255,7 @@ scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_xxhrx")
 animation = &"heal"
 autoplay = "idle"
-frame_progress = 0.2934827
+frame_progress = 0.6893215
 
 [node name="hpbar" type="ProgressBar" parent="."]
 offset_left = 222.0

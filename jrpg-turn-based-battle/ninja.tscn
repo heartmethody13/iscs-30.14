@@ -146,7 +146,7 @@ scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_25rb4")
 animation = &"attack"
 autoplay = "default"
-frame_progress = 0.39235497
+frame_progress = 0.1675878
 flip_h = true
 
 [node name="hpbar" type="ProgressBar" parent="."]

@@ -1,14 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://dojqycq2ajgrt"]
+[gd_scene load_steps=9 format=3 uid="uid://dojqycq2ajgrt"]
 
-[ext_resource type="Script" uid="uid://c4xspwtnwxkci" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://ci0lhp440d7l8" path="res://wizard.tscn" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://bpv8cuk6f74l4" path="res://wood.jpg" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://c4fxs2wuodl6b" path="res://nomad.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://v3hhqbam47ro" path="res://ninja.tscn" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dcpf44h0w6eqw" path="res://viking.tscn" id="5_272bh"]
+[ext_resource type="Script" uid="uid://bgsgil2txcoox" path="res://ui.gd" id="7_272bh"]
+
+[sub_resource type="GDScript" id="GDScript_7mycd"]
+
+[sub_resource type="GDScript" id="GDScript_272bh"]
 
 [node name="battlescene" type="Node2D"]
-script = ExtResource("1_7mycd")
+script = SubResource("GDScript_7mycd")
+
+[node name="battle_handler" type="Node" parent="."]
+script = SubResource("GDScript_272bh")
 
 [node name="wood-bg" type="Sprite2D" parent="."]
 position = Vector2(586, 331)
@@ -36,6 +43,7 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 1167.0
 offset_bottom = 662.0
+script = ExtResource("7_272bh")
 
 [node name="commandmenu" type="PanelContainer" parent="CanvasLayer/UI"]
 layout_mode = 0

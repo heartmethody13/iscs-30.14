@@ -425,7 +425,7 @@ scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_mf4oi")
 animation = &"attack2"
 autoplay = "idle"
-frame_progress = 0.26910725
+frame_progress = 0.09981633
 
 [node name="hpbar" type="ProgressBar" parent="."]
 offset_left = 108.0

@@ -30,3 +30,9 @@ func hide_pointer():
 
 func is_alive() -> bool:
 	return hp > 0
+
+func heal(amount: int):
+	hp += amount
+	if hp > max_hp:
+		hp = max_hp
+	hp_bar.value = hp
