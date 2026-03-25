@@ -81,3 +81,19 @@ scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_25rb4")
 autoplay = "default"
 flip_h = true
+
+[node name="hpbar" type="ProgressBar" parent="."]
+offset_left = 757.0
+offset_top = 585.0
+offset_right = 896.0
+offset_bottom = 619.0
+value = 100.0
+show_percentage = false
+
+[node name="name" type="Label" parent="."]
+offset_left = 793.0
+offset_top = 300.0
+offset_right = 847.0
+offset_bottom = 323.0
+text = "Ninja"
+horizontal_alignment = 1

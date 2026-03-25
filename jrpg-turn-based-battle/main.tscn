@@ -26,3 +26,33 @@ texture = ExtResource("2_1bvp3")
 [node name="ninja" parent="enemies" instance=ExtResource("4_7mycd")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 1166.0
+offset_bottom = 667.0
+
+[node name="commandmenu" type="PanelContainer" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 210.0
+offset_right = 416.0
+offset_bottom = 301.0
+
+[node name="commands" type="VBoxContainer" parent="CanvasLayer/UI/commandmenu"]
+layout_mode = 2
+
+[node name="attack" type="Button" parent="CanvasLayer/UI/commandmenu/commands"]
+layout_mode = 2
+text = "Attack"
+
+[node name="skill" type="Button" parent="CanvasLayer/UI/commandmenu/commands"]
+layout_mode = 2
+text = "Skill"
+
+[node name="defend" type="Button" parent="CanvasLayer/UI/commandmenu/commands"]
+layout_mode = 2
+text = "Defend"
