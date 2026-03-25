@@ -84,3 +84,17 @@ text = "Attack 1"
 [node name="attack_option2" type="Button" parent="CanvasLayer/UI/attackmenu/attackbox"]
 layout_mode = 2
 text = "Attack 2"
+
+[node name="actionbox" type="Panel" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 37.0
+offset_right = 958.0
+offset_bottom = 154.0
+
+[node name="actionlabel" type="Label" parent="CanvasLayer/UI/actionbox"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 23.0
+offset_right = 739.0
+offset_bottom = 85.0

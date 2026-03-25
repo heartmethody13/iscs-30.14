@@ -9,8 +9,12 @@ extends Control
 @onready var attack_option1 = $attackmenu/attackbox/attack_option1
 @onready var attack_option2 = $attackmenu/attackbox/attack_option2
 
+@onready var action_box = $actionbox
+@onready var action_label = $actionbox/actionlabel
+
 func _ready():
 	hide_all()
+	action_box.hide()
 
 func hide_all():
 	command_menu.hide()
@@ -63,3 +67,10 @@ func update_attack_buttons(actor):
 		attack_option2.show()
 	else:
 		attack_option2.hide()
+
+func show_action_text(text: String):
+	action_label.text = text
+	action_box.show()
+
+func hide_action_text():
+	action_box.hide()
