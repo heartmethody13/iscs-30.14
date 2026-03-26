@@ -9,9 +9,9 @@ extends Node2D
 	{"name": "", "damage": 0, "animation": ""}
 ]
 
-@export var sprite: AnimatedSprite2D
-@export var hp_bar: ProgressBar
-@export var pointer: Sprite2D
+@onready var sprite: AnimatedSprite2D = $sprite
+@onready var hp_bar: ProgressBar = $hpbar
+@onready var pointer: Sprite2D = $focus
 
 func _ready():
 	hp_bar.max_value = max_hp

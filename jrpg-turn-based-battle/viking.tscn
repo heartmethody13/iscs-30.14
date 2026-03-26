@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://dcpf44h0w6eqw"]
 
-[ext_resource type="Script" uid="uid://bbq7uhivfgien" path="res://viking.gd" id="1_61038"]
+[ext_resource type="Script" uid="uid://d0eru3a7fy4u1" path="res://entity.gd" id="1_khltn"]
 [ext_resource type="Texture2D" uid="uid://ivh7cckv83st" path="res://viking2.png" id="1_ytgu2"]
 [ext_resource type="Texture2D" uid="uid://bv046h4y2ic1x" path="res://hand_cursor0000.png" id="2_rpebc"]
 [ext_resource type="LabelSettings" uid="uid://dii4683tocufc" path="res://label.tres" id="3_khltn"]
@@ -130,8 +130,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="viking" type="Node2D" node_paths=PackedStringArray("sprite", "hp_bar", "pointer")]
-script = ExtResource("1_61038")
+[node name="viking" type="Node2D"]
+script = ExtResource("1_khltn")
 unit_name = "Viking"
 team = "enemy"
 attacks = Array[Dictionary]([{
@@ -139,11 +139,8 @@ attacks = Array[Dictionary]([{
 "damage": 22,
 "name": "Valhalla's Call"
 }])
-sprite = NodePath("viking")
-hp_bar = NodePath("hpbar")
-pointer = NodePath("focus")
 
-[node name="viking" type="AnimatedSprite2D" parent="."]
+[node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_rpebc")
@@ -168,8 +165,7 @@ text = "Viking"
 label_settings = ExtResource("3_khltn")
 
 [node name="focus" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(224, 65)
+position = Vector2(100, 100)
 scale = Vector2(2.09375, 2.13281)
 texture = ExtResource("2_rpebc")
 flip_h = true

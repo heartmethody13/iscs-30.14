@@ -1,7 +1,7 @@
 [gd_scene load_steps=37 format=3 uid="uid://ci0lhp440d7l8"]
 
 [ext_resource type="Texture2D" uid="uid://c47amreyqdoue" path="res://MAGE.png" id="1_0isxx"]
-[ext_resource type="Script" uid="uid://cpgtwm1iesnet" path="res://wizard.gd" id="1_xxhrx"]
+[ext_resource type="Script" uid="uid://d0eru3a7fy4u1" path="res://entity.gd" id="1_xo1iy"]
 [ext_resource type="Texture2D" uid="uid://bv046h4y2ic1x" path="res://hand_cursor0000.png" id="3_34mad"]
 [ext_resource type="LabelSettings" uid="uid://dii4683tocufc" path="res://label.tres" id="3_xo1iy"]
 
@@ -245,8 +245,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="wizard" type="Node2D" node_paths=PackedStringArray("sprite", "hp_bar", "pointer")]
-script = ExtResource("1_xxhrx")
+[node name="wizard" type="Node2D"]
+script = ExtResource("1_xo1iy")
 unit_name = "Wizard"
 attacks = Array[Dictionary]([{
 "animation": "attack1",
@@ -257,17 +257,16 @@ attacks = Array[Dictionary]([{
 "damage": 18,
 "name": "Arcane Nova"
 }])
-sprite = NodePath("wizard")
-hp_bar = NodePath("hpbar")
-pointer = NodePath("focus")
 
-[node name="wizard" type="AnimatedSprite2D" parent="."]
+[node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(3.05176e-05, 0)
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_xxhrx")
 animation = &"heal"
 autoplay = "idle"
+frame = 6
+frame_progress = 1.0
 
 [node name="hpbar" type="ProgressBar" parent="."]
 offset_left = -76.0
@@ -286,7 +285,6 @@ text = "Wizard"
 label_settings = ExtResource("3_xo1iy")
 
 [node name="focus" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-222, 153)
+position = Vector2(-166, 153)
 scale = Vector2(2.09375, 2.13281)
 texture = ExtResource("3_34mad")

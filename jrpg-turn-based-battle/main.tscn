@@ -15,8 +15,6 @@ battle_ui = NodePath("CanvasLayer/UI")
 entities = [NodePath("players/wizard"), NodePath("players/nomad"), NodePath("enemies/viking"), NodePath("enemies/ninja")]
 attack_container = NodePath("CanvasLayer/UI/HBoxContainer/attackmenu/attackbox")
 
-[node name="battle_handler" type="Node" parent="."]
-
 [node name="wood-bg" type="Sprite2D" parent="."]
 position = Vector2(586, 331)
 scale = Vector2(2.9125, 1.655)
