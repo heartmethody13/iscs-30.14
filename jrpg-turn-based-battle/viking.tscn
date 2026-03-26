@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://dcpf44h0w6eqw"]
+[gd_scene load_steps=23 format=3 uid="uid://dcpf44h0w6eqw"]
 
 [ext_resource type="Script" uid="uid://bbq7uhivfgien" path="res://viking.gd" id="1_61038"]
 [ext_resource type="Texture2D" uid="uid://ivh7cckv83st" path="res://viking2.png" id="1_ytgu2"]
 [ext_resource type="Texture2D" uid="uid://bv046h4y2ic1x" path="res://hand_cursor0000.png" id="2_rpebc"]
 [ext_resource type="LabelSettings" uid="uid://dii4683tocufc" path="res://label.tres" id="3_khltn"]
+[ext_resource type="Texture2D" uid="uid://bdhgduh8n7fa2" path="res://shield.png" id="5_7vwhe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpebc"]
 atlas = ExtResource("1_ytgu2")
@@ -169,7 +170,13 @@ label_settings = ExtResource("3_khltn")
 
 [node name="focus" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(224, 65)
+position = Vector2(202.99998, 65.00001)
 scale = Vector2(2.09375, 2.13281)
 texture = ExtResource("2_rpebc")
 flip_h = true
+
+[node name="shield_icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(4.7683716e-07, 76)
+scale = Vector2(0.47, 0.51)
+texture = ExtResource("5_7vwhe")

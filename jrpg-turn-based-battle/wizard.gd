@@ -11,4 +11,3 @@ extends Entity
 
 # @onready var hp_bar: ProgressBar = $hpbar
 # @onready var pointer = $focus
-

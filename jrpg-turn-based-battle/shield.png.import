@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csbewwelb8ddr"
-path="res://.godot/imported/Nomad3_HD_NoBg.png-f97e9f6833b7f88d32b0866ba167de48.ctex"
+uid="uid://bdhgduh8n7fa2"
+path="res://.godot/imported/shield.png-bdf8e401b772eb7c90cb1fa4b7e06cd1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Nomad3_HD_NoBg.png"
-dest_files=["res://.godot/imported/Nomad3_HD_NoBg.png-f97e9f6833b7f88d32b0866ba167de48.ctex"]
+source_file="res://shield.png"
+dest_files=["res://.godot/imported/shield.png-bdf8e401b772eb7c90cb1fa4b7e06cd1.ctex"]
 
 [params]
 

@@ -18,7 +18,7 @@ extends Control
 signal attack_pressed
 signal skill_pressed
 signal defend_pressed
-signal attack_selected(index)
+signal attack_selected(attack)
 
 func _ready():
 	hide_all()
@@ -81,16 +81,14 @@ func update_attack_buttons(actor):
 
 	var attacks = actor.attacks
 
-	for i in attacks:
-		var attack = i
-
+	for attack in attacks:
 		var button = attack_option_scene.instantiate()
 		button.text = attack["name"]
 
 		attack_box.add_child(button)
 
 		button.pressed.connect(func():
-			emit_signal("attack_selected", i)
+			emit_signal("attack_selected", attack)
 		)
 
 
