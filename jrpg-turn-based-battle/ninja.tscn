@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://v3hhqbam47ro"]
+[gd_scene load_steps=23 format=3 uid="uid://v3hhqbam47ro"]
 
 [ext_resource type="Texture2D" uid="uid://x63qylav0ykd" path="res://Ninja HD Sample.png" id="1_buaqa"]
 [ext_resource type="Script" uid="uid://cdre108ql4vat" path="res://ninja.gd" id="1_lbaip"]
 [ext_resource type="Texture2D" uid="uid://bv046h4y2ic1x" path="res://hand_cursor0000.png" id="2_25rb4"]
+[ext_resource type="LabelSettings" uid="uid://dii4683tocufc" path="res://label.tres" id="3_bvjue"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25rb4"]
 atlas = ExtResource("1_buaqa")
@@ -99,7 +100,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_aq14x")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -132,42 +133,50 @@ animations = [{
 "texture": SubResource("AtlasTexture_facbu")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
-[node name="ninja" type="Node2D"]
+[node name="ninja" type="Node2D" node_paths=PackedStringArray("sprite", "hp_bar", "pointer")]
 script = ExtResource("1_lbaip")
-attacks = Array[String](["Shuriken Tempest"])
+unit_name = "NinJa"
+team = "enemy"
+attacks = Array[Dictionary]([{
+"animation": "attack",
+"damage": 17,
+"name": "Shuriken Tempest"
+}])
+sprite = NodePath("ninja")
+hp_bar = NodePath("hpbar")
+pointer = NodePath("focus")
 
 [node name="ninja" type="AnimatedSprite2D" parent="."]
-position = Vector2(826.6, 369)
 scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_25rb4")
-animation = &"attack"
-autoplay = "default"
-frame_progress = 0.1675878
+animation = &"idle"
+autoplay = "idle"
 flip_h = true
 
 [node name="hpbar" type="ProgressBar" parent="."]
-offset_left = 757.0
-offset_top = 585.0
-offset_right = 896.0
-offset_bottom = 619.0
+offset_left = -69.0
+offset_top = 216.0
+offset_right = 70.0
+offset_bottom = 250.0
 value = 100.0
 show_percentage = false
 
 [node name="name" type="Label" parent="."]
-offset_left = 793.0
-offset_top = 300.0
-offset_right = 847.0
-offset_bottom = 323.0
+offset_left = -33.0
+offset_top = -68.0
+offset_right = 21.0
+offset_bottom = -45.0
 text = "Ninja"
+label_settings = ExtResource("3_bvjue")
 horizontal_alignment = 1
 
 [node name="focus" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(923, 446)
-scale = Vector2(2.0937498, 2.1328127)
+position = Vector2(122, 68)
+scale = Vector2(2.09375, 2.13281)
 texture = ExtResource("2_25rb4")
 flip_h = true

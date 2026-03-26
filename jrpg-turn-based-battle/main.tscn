@@ -1,21 +1,21 @@
 [gd_scene load_steps=9 format=3 uid="uid://dojqycq2ajgrt"]
 
+[ext_resource type="Script" uid="uid://0qx565lf4xep" path="res://main.gd" id="1_272bh"]
 [ext_resource type="PackedScene" uid="uid://ci0lhp440d7l8" path="res://wizard.tscn" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://bpv8cuk6f74l4" path="res://wood.jpg" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://c4fxs2wuodl6b" path="res://nomad.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://v3hhqbam47ro" path="res://ninja.tscn" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dcpf44h0w6eqw" path="res://viking.tscn" id="5_272bh"]
 [ext_resource type="Script" uid="uid://bgsgil2txcoox" path="res://ui.gd" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://7w6xifybfhtu" path="res://attack_option.tscn" id="8_5vw27"]
 
-[sub_resource type="GDScript" id="GDScript_7mycd"]
-
-[sub_resource type="GDScript" id="GDScript_272bh"]
-
-[node name="battlescene" type="Node2D"]
-script = SubResource("GDScript_7mycd")
+[node name="battlescene" type="Node2D" node_paths=PackedStringArray("battle_ui", "entities", "attack_container")]
+script = ExtResource("1_272bh")
+battle_ui = NodePath("CanvasLayer/UI")
+entities = [NodePath("players/wizard"), NodePath("players/nomad"), NodePath("enemies/viking"), NodePath("enemies/ninja")]
+attack_container = NodePath("CanvasLayer/UI/HBoxContainer/attackmenu/attackbox")
 
 [node name="battle_handler" type="Node" parent="."]
-script = SubResource("GDScript_272bh")
 
 [node name="wood-bg" type="Sprite2D" parent="."]
 position = Vector2(586, 331)
@@ -23,67 +23,69 @@ scale = Vector2(2.9125, 1.655)
 texture = ExtResource("2_1bvp3")
 
 [node name="players" type="Node2D" parent="."]
+position = Vector2(170, 250)
 
 [node name="wizard" parent="players" instance=ExtResource("2_0xm2m")]
+position = Vector2(134, 90)
 
 [node name="nomad" parent="players" instance=ExtResource("3_lquwl")]
 
 [node name="enemies" type="Node2D" parent="."]
+position = Vector2(961.73, 250)
 
 [node name="viking" parent="enemies" instance=ExtResource("5_272bh")]
 
 [node name="ninja" parent="enemies" instance=ExtResource("4_7mycd")]
+position = Vector2(-134, 106.305)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 11
 
 [node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 1167.0
-offset_bottom = 662.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("7_272bh")
+attack_option_scene = ExtResource("8_5vw27")
 
-[node name="commandmenu" type="PanelContainer" parent="CanvasLayer/UI"]
-layout_mode = 0
-offset_left = 259.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 2
+offset_left = 335.0
 offset_top = 210.0
-offset_right = 416.0
-offset_bottom = 301.0
+offset_right = 653.0
+offset_bottom = 311.0
 
-[node name="commands" type="VBoxContainer" parent="CanvasLayer/UI/commandmenu"]
+[node name="commandmenu" type="PanelContainer" parent="CanvasLayer/UI/HBoxContainer"]
+custom_minimum_size = Vector2(157, 0)
 layout_mode = 2
 
-[node name="attack" type="Button" parent="CanvasLayer/UI/commandmenu/commands"]
+[node name="commands" type="VBoxContainer" parent="CanvasLayer/UI/HBoxContainer/commandmenu"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="attack" type="Button" parent="CanvasLayer/UI/HBoxContainer/commandmenu/commands"]
 layout_mode = 2
 text = "Attack"
 
-[node name="skill" type="Button" parent="CanvasLayer/UI/commandmenu/commands"]
+[node name="skill" type="Button" parent="CanvasLayer/UI/HBoxContainer/commandmenu/commands"]
 layout_mode = 2
 text = "Skill"
 
-[node name="defend" type="Button" parent="CanvasLayer/UI/commandmenu/commands"]
+[node name="defend" type="Button" parent="CanvasLayer/UI/HBoxContainer/commandmenu/commands"]
 layout_mode = 2
 text = "Defend"
 
-[node name="attackmenu" type="PanelContainer" parent="CanvasLayer/UI"]
-layout_mode = 0
-offset_left = 421.0
-offset_top = 207.0
-offset_right = 578.0
-offset_bottom = 281.0
-
-[node name="attackbox" type="VBoxContainer" parent="CanvasLayer/UI/attackmenu"]
+[node name="attackmenu" type="PanelContainer" parent="CanvasLayer/UI/HBoxContainer"]
+custom_minimum_size = Vector2(157, 0)
 layout_mode = 2
+size_flags_vertical = 0
 
-[node name="attack_option1" type="Button" parent="CanvasLayer/UI/attackmenu/attackbox"]
+[node name="attackbox" type="VBoxContainer" parent="CanvasLayer/UI/HBoxContainer/attackmenu"]
 layout_mode = 2
-text = "Attack 1"
-
-[node name="attack_option2" type="Button" parent="CanvasLayer/UI/attackmenu/attackbox"]
-layout_mode = 2
-text = "Attack 2"
+theme_override_constants/separation = 5
 
 [node name="actionbox" type="Panel" parent="CanvasLayer/UI"]
 layout_mode = 0

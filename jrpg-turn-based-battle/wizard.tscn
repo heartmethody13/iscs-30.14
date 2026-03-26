@@ -1,8 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://ci0lhp440d7l8"]
+[gd_scene load_steps=37 format=3 uid="uid://ci0lhp440d7l8"]
 
 [ext_resource type="Texture2D" uid="uid://c47amreyqdoue" path="res://MAGE.png" id="1_0isxx"]
 [ext_resource type="Script" uid="uid://cpgtwm1iesnet" path="res://wizard.gd" id="1_xxhrx"]
 [ext_resource type="Texture2D" uid="uid://bv046h4y2ic1x" path="res://hand_cursor0000.png" id="3_34mad"]
+[ext_resource type="LabelSettings" uid="uid://dii4683tocufc" path="res://label.tres" id="3_xo1iy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34mad"]
 atlas = ExtResource("1_0isxx")
@@ -155,7 +156,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_20pe4")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack1",
 "speed": 5.0
 }, {
@@ -184,7 +185,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jlar0")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2",
 "speed": 5.0
 }, {
@@ -210,7 +211,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4yrku")
 }],
-"loop": true,
+"loop": false,
 "name": &"heal",
 "speed": 5.0
 }, {
@@ -244,36 +245,48 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="wizard" type="Node2D"]
+[node name="wizard" type="Node2D" node_paths=PackedStringArray("sprite", "hp_bar", "pointer")]
 script = ExtResource("1_xxhrx")
 unit_name = "Wizard"
+attacks = Array[Dictionary]([{
+"animation": "attack1",
+"damage": 25,
+"name": "Astral Cataclysm"
+}, {
+"animation": "attack2",
+"damage": 18,
+"name": "Arcane Nova"
+}])
+sprite = NodePath("wizard")
+hp_bar = NodePath("hpbar")
+pointer = NodePath("focus")
 
 [node name="wizard" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(298.00003, 367.00003)
+position = Vector2(3.05176e-05, 0)
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_xxhrx")
 animation = &"heal"
 autoplay = "idle"
-frame_progress = 0.6893215
 
 [node name="hpbar" type="ProgressBar" parent="."]
-offset_left = 222.0
-offset_top = 599.0
-offset_right = 361.0
-offset_bottom = 633.0
+offset_left = -76.0
+offset_top = 232.0
+offset_right = 63.0
+offset_bottom = 266.0
 value = 100.0
 show_percentage = false
 
 [node name="name" type="Label" parent="."]
-offset_left = 254.0
-offset_top = 404.0
-offset_right = 308.0
-offset_bottom = 427.0
+offset_left = -44.0
+offset_top = 37.0
+offset_right = 9.99997
+offset_bottom = 60.0
 text = "Wizard"
+label_settings = ExtResource("3_xo1iy")
 
 [node name="focus" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(187, 547)
-scale = Vector2(2.0937498, 2.1328127)
+position = Vector2(-222, 153)
+scale = Vector2(2.09375, 2.13281)
 texture = ExtResource("3_34mad")

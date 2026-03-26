@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dcpf44h0w6eqw"]
+[gd_scene load_steps=22 format=3 uid="uid://dcpf44h0w6eqw"]
 
 [ext_resource type="Script" uid="uid://bbq7uhivfgien" path="res://viking.gd" id="1_61038"]
 [ext_resource type="Texture2D" uid="uid://ivh7cckv83st" path="res://viking2.png" id="1_ytgu2"]
 [ext_resource type="Texture2D" uid="uid://bv046h4y2ic1x" path="res://hand_cursor0000.png" id="2_rpebc"]
+[ext_resource type="LabelSettings" uid="uid://dii4683tocufc" path="res://label.tres" id="3_khltn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpebc"]
 atlas = ExtResource("1_ytgu2")
@@ -98,7 +99,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wa3kj")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -129,14 +130,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="viking" type="Node2D"]
+[node name="viking" type="Node2D" node_paths=PackedStringArray("sprite", "hp_bar", "pointer")]
 script = ExtResource("1_61038")
 unit_name = "Viking"
-attacks = Array[String](["Valhalla's Call"])
+team = "enemy"
+attacks = Array[Dictionary]([{
+"animation": "attack",
+"damage": 22,
+"name": "Valhalla's Call"
+}])
+sprite = NodePath("viking")
+hp_bar = NodePath("hpbar")
+pointer = NodePath("focus")
 
 [node name="viking" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(942.6, 282)
 scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_rpebc")
 animation = &"attack"
@@ -144,23 +152,24 @@ autoplay = "idle"
 flip_h = true
 
 [node name="hpbar" type="ProgressBar" parent="."]
-offset_left = 859.0
-offset_top = 496.0
-offset_right = 998.0
-offset_bottom = 530.0
+offset_left = -83.6
+offset_top = 214.0
+offset_right = 55.4
+offset_bottom = 248.0
 value = 100.0
 show_percentage = false
 
 [node name="name" type="Label" parent="."]
-offset_left = 882.0
-offset_top = 217.0
-offset_right = 936.0
-offset_bottom = 240.0
+offset_left = -60.6
+offset_top = -65.0
+offset_right = -6.59998
+offset_bottom = -42.0
 text = "Viking"
+label_settings = ExtResource("3_khltn")
 
 [node name="focus" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(1084, 354)
-scale = Vector2(2.0937498, 2.1328127)
+position = Vector2(224, 65)
+scale = Vector2(2.09375, 2.13281)
 texture = ExtResource("2_rpebc")
 flip_h = true
