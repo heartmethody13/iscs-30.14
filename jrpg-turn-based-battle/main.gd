@@ -132,12 +132,12 @@ func _input(event):
 	if selecting_target:
 		if event.is_action_pressed("ui_right"):
 			selected_target_index -= 1
-			selected_target_index %= 2
+			selected_target_index %= get_current_targets().size()
 			update_target_pointer()
 
 		elif event.is_action_pressed("ui_left"):
 			selected_target_index += 1
-			selected_target_index %= 2
+			selected_target_index %= get_current_targets().size()
 			update_target_pointer()
 
 		elif event.is_action_pressed("ui_accept"):

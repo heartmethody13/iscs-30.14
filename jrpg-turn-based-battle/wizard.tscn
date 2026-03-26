@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ci0lhp440d7l8"]
+[gd_scene load_steps=45 format=3 uid="uid://ci0lhp440d7l8"]
 
 [ext_resource type="Texture2D" uid="uid://c47amreyqdoue" path="res://MAGE.png" id="1_0isxx"]
 [ext_resource type="Script" uid="uid://d0eru3a7fy4u1" path="res://entity.gd" id="1_xo1iy"]
@@ -68,6 +68,38 @@ region = Rect2(384, 256, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jlar0"]
 atlas = ExtResource("1_0isxx")
 region = Rect2(448, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05tbc"]
+atlas = ExtResource("1_0isxx")
+region = Rect2(0, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxciu"]
+atlas = ExtResource("1_0isxx")
+region = Rect2(64, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_165cv"]
+atlas = ExtResource("1_0isxx")
+region = Rect2(128, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfbqg"]
+atlas = ExtResource("1_0isxx")
+region = Rect2(192, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4oej"]
+atlas = ExtResource("1_0isxx")
+region = Rect2(256, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rb1p"]
+atlas = ExtResource("1_0isxx")
+region = Rect2(320, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq2g1"]
+atlas = ExtResource("1_0isxx")
+region = Rect2(384, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8ldh"]
+atlas = ExtResource("1_0isxx")
+region = Rect2(448, 512, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_juihr"]
 atlas = ExtResource("1_0isxx")
@@ -191,6 +223,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_05tbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxciu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_165cv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfbqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4oej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rb1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq2g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8ldh")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_juihr")
 }, {
 "duration": 1.0,
@@ -263,9 +324,9 @@ texture_filter = 1
 position = Vector2(3.05176e-05, 0)
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_xxhrx")
-animation = &"heal"
+animation = &"death"
 autoplay = "idle"
-frame = 6
+frame = 7
 frame_progress = 1.0
 
 [node name="hpbar" type="ProgressBar" parent="."]

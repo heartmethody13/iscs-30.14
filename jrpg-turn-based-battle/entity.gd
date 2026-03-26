@@ -21,10 +21,12 @@ func _ready():
 	pointer.visible = false
 
 func take_damage(amount: int):
-	if not hasDefended:
+	if not hasDefended and hp != 0:
 		hp -= amount
 		if hp < 0:
 			hp = 0
+			play_anim("death")
+			await sprite.animation_finished
 		hp_bar.value = hp
 	hasDefended = false
 
