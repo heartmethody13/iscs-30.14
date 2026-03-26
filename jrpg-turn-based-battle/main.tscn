@@ -13,7 +13,7 @@
 script = ExtResource("1_272bh")
 battle_ui = NodePath("CanvasLayer/UI")
 entities = [NodePath("players/wizard"), NodePath("players/nomad"), NodePath("enemies/viking"), NodePath("enemies/ninja")]
-attack_container = NodePath("CanvasLayer/UI/HBoxContainer/attackmenu/attackbox")
+attack_container = NodePath("CanvasLayer/UI/attackmenu/attackbox")
 
 [node name="wood-bg" type="Sprite2D" parent="."]
 position = Vector2(586, 331)
@@ -50,40 +50,36 @@ script = ExtResource("7_272bh")
 attack_option_scene = ExtResource("8_5vw27")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI"]
+visible = false
 layout_mode = 0
 offset_left = 335.0
 offset_top = 210.0
 offset_right = 653.0
 offset_bottom = 311.0
 
-[node name="commandmenu" type="PanelContainer" parent="CanvasLayer/UI/HBoxContainer"]
+[node name="commandmenu" type="PanelContainer" parent="CanvasLayer/UI"]
 custom_minimum_size = Vector2(157, 0)
-layout_mode = 2
+layout_mode = 0
+offset_left = 335.0
+offset_top = 210.0
+offset_right = 492.0
+offset_bottom = 323.0
 
-[node name="commands" type="VBoxContainer" parent="CanvasLayer/UI/HBoxContainer/commandmenu"]
+[node name="commands" type="VBoxContainer" parent="CanvasLayer/UI/commandmenu"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="attack" type="Button" parent="CanvasLayer/UI/HBoxContainer/commandmenu/commands"]
+[node name="attack" type="Button" parent="CanvasLayer/UI/commandmenu/commands"]
 layout_mode = 2
 text = "Attack"
 
-[node name="skill" type="Button" parent="CanvasLayer/UI/HBoxContainer/commandmenu/commands"]
+[node name="skill" type="Button" parent="CanvasLayer/UI/commandmenu/commands"]
 layout_mode = 2
 text = "Skill"
 
-[node name="defend" type="Button" parent="CanvasLayer/UI/HBoxContainer/commandmenu/commands"]
+[node name="defend" type="Button" parent="CanvasLayer/UI/commandmenu/commands"]
 layout_mode = 2
 text = "Defend"
-
-[node name="attackmenu" type="PanelContainer" parent="CanvasLayer/UI/HBoxContainer"]
-custom_minimum_size = Vector2(157, 0)
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="attackbox" type="VBoxContainer" parent="CanvasLayer/UI/HBoxContainer/attackmenu"]
-layout_mode = 2
-theme_override_constants/separation = 5
 
 [node name="actionbox" type="Panel" parent="CanvasLayer/UI"]
 layout_mode = 0
@@ -98,3 +94,16 @@ offset_left = 40.0
 offset_top = 23.0
 offset_right = 739.0
 offset_bottom = 85.0
+
+[node name="attackmenu" type="PanelContainer" parent="CanvasLayer/UI"]
+custom_minimum_size = Vector2(157, 0)
+layout_mode = 0
+offset_left = 496.0
+offset_top = 210.0
+offset_right = 653.0
+offset_bottom = 210.0
+size_flags_vertical = 0
+
+[node name="attackbox" type="VBoxContainer" parent="CanvasLayer/UI/attackmenu"]
+layout_mode = 2
+theme_override_constants/separation = 5

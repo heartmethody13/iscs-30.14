@@ -1,14 +1,13 @@
 class_name BattleUI
 extends Control
 
-@onready var command_menu = $HBoxContainer/commandmenu
-@onready var attack_button = $HBoxContainer/commandmenu/commands/attack
-@onready var skill_button = $HBoxContainer/commandmenu/commands/skill
-@onready var defend_button = $HBoxContainer/commandmenu/commands/defend
+@onready var command_menu = $commandmenu
+@onready var attack_button = $commandmenu/commands/attack
+@onready var skill_button = $commandmenu/commands/skill
+@onready var defend_button = $commandmenu/commands/defend
 
-@onready var attack_menu = $HBoxContainer/attackmenu
-
-@onready var attack_box = $HBoxContainer/attackmenu/attackbox
+@onready var attack_menu = $attackmenu
+@onready var attack_box = $attackmenu/attackbox
 
 @onready var action_box = $actionbox
 @onready var action_label = $actionbox/actionlabel
@@ -46,25 +45,31 @@ func hide_all():
 func show_command_menu(actor):
 	command_menu.show()
 	attack_menu.hide()
-	position_menus(actor)
+	position_menus()
 	update_command_buttons(actor)
 
 func show_attack_menu(actor):
 	attack_menu.show()
 	# command_menu.hide()
-	position_menus(actor)
+	position_menus()
 	update_attack_buttons(actor)
 
 func show_command_again(actor):
 	command_menu.show()
 	attack_menu.hide()
-	position_menus(actor)
+	position_menus()
 	update_command_buttons(actor)
 
-func position_menus(actor):
-	var base_pos = actor.global_position
-	command_menu.position = Vector2(base_pos.x + 30, base_pos.y - 20)
-	attack_menu.position = Vector2(base_pos.x + 110, base_pos.y - 20)
+func position_menus():
+	var action_pos = action_box.global_position
+	var action_size = action_box.size
+	
+	command_menu.global_position = Vector2(
+		action_pos.x + (action_size.x / 2) - (command_menu.size.x / 2),
+		action_pos.y + action_size.y + 10
+	)
+
+	attack_menu.global_position = command_menu.global_position + Vector2(command_menu.size.x + 10, 0)
 
 func update_command_buttons(actor):
 	attack_button.show()

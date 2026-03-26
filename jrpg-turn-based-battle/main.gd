@@ -53,6 +53,7 @@ func _on_defend_pressed():
 
 
 func _on_attack_pressed():
+	battle_ui.show_action_text("Choosing %s's action" % current_entity.unit_name)
 	battle_ui.show_attack_menu(current_entity)
 
 
@@ -168,7 +169,7 @@ func get_alive_entities() -> Array:
 func player_turn():
 	selected_target_index = 0
 	# update_target_pointer()
-
+	battle_ui.show_action_text("Choosing %s's action" % current_entity.unit_name)
 	battle_ui.show_command_menu(current_entity)
 
 	print("Player turn: choose target")
@@ -189,13 +190,13 @@ func _input(event):
 
 		elif event.is_action_pressed("ui_accept"):
 			confirm_target()
-		
+
 		elif event.is_action_pressed("ui_cancel"):
 			selecting_target = false
 			for e in entities:
 				e.hide_pointer()
+			battle_ui.show_action_text("Choosing %s's action" % current_entity.unit_name)
 			battle_ui.show_command_again(current_entity)
-
 		return
 
 
