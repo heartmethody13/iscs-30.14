@@ -13,16 +13,20 @@ extends Node2D
 @onready var hp_bar: ProgressBar = $hpbar
 @onready var pointer: Sprite2D = $focus
 
+var hasDefended: bool
+
 func _ready():
 	hp_bar.max_value = max_hp
 	hp_bar.value = hp
 	pointer.visible = false
 
 func take_damage(amount: int):
-	hp -= amount
-	if hp < 0:
-		hp = 0
-	hp_bar.value = hp
+	if not hasDefended:
+		hp -= amount
+		if hp < 0:
+			hp = 0
+		hp_bar.value = hp
+	hasDefended = false
 
 func show_pointer():
 	pointer.visible = true

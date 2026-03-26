@@ -24,8 +24,15 @@ func _ready():
 	battle_ui.attack_pressed.connect(_on_attack_pressed)
 	battle_ui.attack_selected.connect(_on_attack_selected)
 	battle_ui.skill_pressed.connect(_on_skill_pressed)
+	battle_ui.defend_pressed.connect(_on_defend_pressed)
 
 	start_battle()
+
+
+func _on_defend_pressed():
+	current_entity.hasDefended = true
+	battle_ui.hide_all()
+	end_turn()
 
 
 func _on_attack_pressed():
