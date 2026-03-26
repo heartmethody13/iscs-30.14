@@ -1,9 +1,10 @@
-[gd_scene load_steps=45 format=3 uid="uid://ci0lhp440d7l8"]
+[gd_scene load_steps=46 format=3 uid="uid://ci0lhp440d7l8"]
 
 [ext_resource type="Texture2D" uid="uid://c47amreyqdoue" path="res://MAGE.png" id="1_0isxx"]
 [ext_resource type="Script" uid="uid://d0eru3a7fy4u1" path="res://entity.gd" id="1_xo1iy"]
 [ext_resource type="Texture2D" uid="uid://bv046h4y2ic1x" path="res://hand_cursor0000.png" id="3_34mad"]
 [ext_resource type="LabelSettings" uid="uid://dii4683tocufc" path="res://label.tres" id="3_xo1iy"]
+[ext_resource type="Texture2D" uid="uid://bdhgduh8n7fa2" path="res://shield.png" id="5_wsbrn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34mad"]
 atlas = ExtResource("1_0isxx")
@@ -324,10 +325,8 @@ texture_filter = 1
 position = Vector2(3.05176e-05, 0)
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_xxhrx")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame = 7
-frame_progress = 1.0
 
 [node name="hpbar" type="ProgressBar" parent="."]
 offset_left = -76.0
@@ -349,3 +348,10 @@ label_settings = ExtResource("3_xo1iy")
 position = Vector2(-166, 153)
 scale = Vector2(2.09375, 2.13281)
 texture = ExtResource("3_34mad")
+
+[node name="shield" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(119, 148.00002)
+scale = Vector2(0.33999997, 0.5357143)
+skew = -0.19373155
+texture = ExtResource("5_wsbrn")

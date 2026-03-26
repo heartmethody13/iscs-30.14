@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://v3hhqbam47ro"]
+[gd_scene load_steps=31 format=3 uid="uid://v3hhqbam47ro"]
 
 [ext_resource type="Texture2D" uid="uid://x63qylav0ykd" path="res://Ninja HD Sample.png" id="1_buaqa"]
 [ext_resource type="Script" uid="uid://d0eru3a7fy4u1" path="res://entity.gd" id="1_bvjue"]
 [ext_resource type="Texture2D" uid="uid://bv046h4y2ic1x" path="res://hand_cursor0000.png" id="2_25rb4"]
 [ext_resource type="LabelSettings" uid="uid://dii4683tocufc" path="res://label.tres" id="3_bvjue"]
+[ext_resource type="Texture2D" uid="uid://bdhgduh8n7fa2" path="res://shield.png" id="5_g5hew"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25rb4"]
 atlas = ExtResource("1_buaqa")
@@ -204,10 +205,8 @@ attacks = Array[Dictionary]([{
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_25rb4")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame = 6
-frame_progress = 1.0
 flip_h = true
 
 [node name="hpbar" type="ProgressBar" parent="."]
@@ -232,4 +231,12 @@ visible = false
 position = Vector2(122, 68)
 scale = Vector2(2.09375, 2.13281)
 texture = ExtResource("2_25rb4")
+flip_h = true
+
+[node name="shield" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-106.999985, 101)
+scale = Vector2(0.33999997, 0.5357143)
+skew = 0.19373155
+texture = ExtResource("5_g5hew")
 flip_h = true

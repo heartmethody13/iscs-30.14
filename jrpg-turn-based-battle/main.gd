@@ -17,6 +17,10 @@ var pending_attack: Dictionary = {}
 enum Target{PLAYER, ENEMY}
 
 var target_type: Target
+var player_action_queue: Array[Dictionary] = []
+var player_selection_index: int = 0
+var choosing_player_actions: bool = true
+
 
 func _ready():
 	setup_teams()
@@ -30,9 +34,22 @@ func _ready():
 
 
 func _on_defend_pressed():
-	current_entity.hasDefended = true
+	player_action_queue.append({
+		"actor": current_entity,
+		"type": "defend"
+	})
+
 	battle_ui.hide_all()
-	end_turn()
+	advance_player_selection()
+	#current_entity.hasDefended = true
+	#current_entity.show_shield()
+	#battle_ui.show_action_text("%s defends" % current_entity.unit_name)
+#
+	#await get_tree().create_timer(0.8).timeout
+#
+	#battle_ui.hide_all()
+	#battle_ui.hide_action_text()
+	#end_turn()
 
 
 func _on_attack_pressed():
@@ -41,7 +58,7 @@ func _on_attack_pressed():
 
 func _on_attack_selected(attack: Dictionary):
 	pending_attack = attack
-	battle_ui.hide_all()
+	#battle_ui.hide_all()
 
 	var targets = get_alive_enemies()
 	if targets.is_empty():
@@ -64,7 +81,7 @@ func _on_skill_pressed():
 	if current_entity.unit_name.to_lower() == "wizard":
 		pending_attack = {"name": "Heal", "heal": 50, "animation": "heal"}
 		start_target_selection(Target.PLAYER)
-	pass
+	#pass
 
 
 # -------------------------
@@ -79,34 +96,64 @@ func setup_teams():
 
 
 func start_battle():
-	current_turn_index = 0
-	next_turn()
+	start_player_phase()
+	#current_turn_index = 0
+	#next_turn()
+
+# -------------------------
+# PLAYER PHASE / ENEMY PHASE
+# -------------------------
+func start_player_phase():
+	player_action_queue.clear()
+	player_selection_index = 0
+	choosing_player_actions = true
+	selecting_target = false
+	set_process_input(true)
+	choose_next_player_action()
 
 
+func choose_next_player_action():
+	var alive_players = get_alive_players()
+
+	if alive_players.is_empty():
+		check_battle_end()
+		return
+
+	if player_selection_index >= alive_players.size():
+		choosing_player_actions = false
+		await execute_player_phase()
+		if check_battle_end():
+			return
+		await execute_enemy_phase()
+		if check_battle_end():
+			return
+		start_player_phase()
+		return
+
+	current_entity = alive_players[player_selection_index]
+
+	# skip turn if marked
+	if current_entity.skip_next_turn:
+		current_entity.skip_next_turn = false
+		battle_ui.show_action_text("%s skips this turn" % current_entity.unit_name)
+		await get_tree().create_timer(0.8).timeout
+		battle_ui.hide_action_text()
+
+		player_selection_index += 1
+		choose_next_player_action()
+		return
+
+	player_turn()
+
+
+func advance_player_selection():
+	player_selection_index += 1
+	choose_next_player_action()
+	
+	
 # -------------------------
 # Turn System
 # -------------------------
-func next_turn():
-	var alive_entities = get_alive_entities()
-
-	if alive_entities.is_empty():
-		return
-
-	current_entity = alive_entities[current_turn_index % alive_entities.size()]
-
-	if not current_entity.is_alive():
-		current_turn_index += 1
-		next_turn()
-		return
-
-	print("Turn: ", current_entity.unit_name)
-
-	if current_entity.team == "player":
-		player_turn()
-	else:
-		enemy_turn()
-
-
 func get_alive_entities() -> Array:
 	var alive: Array = []
 	for e in entities:
@@ -142,6 +189,12 @@ func _input(event):
 
 		elif event.is_action_pressed("ui_accept"):
 			confirm_target()
+		
+		elif event.is_action_pressed("ui_cancel"):
+			selecting_target = false
+			for e in entities:
+				e.hide_pointer()
+			battle_ui.show_command_again(current_entity)
 
 		return
 
@@ -163,50 +216,79 @@ func update_target_pointer():
 	print(targets[selected_target_index])
 
 
-func perform_player_attack():
-	var targets = get_alive_enemies()
-	if targets.is_empty():
-		return
-
-	var target = targets[selected_target_index]
-
-	var attack = current_entity.attacks[0] # simple: first attack
-	var damage = attack["damage"]
-
-	print(current_entity.unit_name, " attacks ", target.unit_name)
-
-	current_entity.play_anim("attack")
-	target.take_damage(damage)
-
-	end_turn()
+#func perform_player_attack():
+	#var targets = get_alive_enemies()
+	#if targets.is_empty():
+		#return
+#
+	#var target = targets[selected_target_index]
+#
+	#var attack = current_entity.attacks[0] # simple: first attack
+	#var damage = attack["damage"]
+#
+	#print(current_entity.unit_name, " attacks ", target.unit_name)
+#
+	#current_entity.play_anim("attack")
+	#target.take_damage(damage)
+#
+	#end_turn()
 
 
 # -------------------------
 # Enemy Turn (simple AI)
 # -------------------------
-func enemy_turn():
-	await get_tree().create_timer(0.5).timeout
+func execute_enemy_phase():
+	var alive_enemies = get_alive_enemies()
 
-	var targets = get_alive_players()
-	if targets.is_empty():
-		return
+	for enemy in alive_enemies:
+		if not enemy.is_alive():
+			continue
 
-	var target = targets.pick_random()
+		await get_tree().create_timer(0.5).timeout
 
-	var attack = current_entity.attacks[0]
-	var damage = attack["damage"]
+		var targets = get_alive_players()
+		if targets.is_empty():
+			return
 
+		var target = targets.pick_random()
+		var attack = enemy.attacks[0]
+		var damage = attack["damage"]
 
-	show_action_box(current_entity, attack["name"], target)
+		show_action_box(enemy, attack["name"], target)
 
-	current_entity.play_anim("attack")
-	await current_entity.sprite.animation_finished
-	target.take_damage(damage)
-	current_entity.play_anim("idle")
+		enemy.play_anim(attack["animation"])
+		await enemy.sprite.animation_finished
 
-	await get_tree().create_timer(0.5).timeout
+		await target.take_damage(damage)
 
-	end_turn()
+		enemy.play_anim("idle")
+		await get_tree().create_timer(0.5).timeout
+
+		if check_battle_end():
+			return
+#func enemy_turn():
+	#await get_tree().create_timer(0.5).timeout
+#
+	#var targets = get_alive_players()
+	#if targets.is_empty():
+		#return
+#
+	#var target = targets.pick_random()
+#
+	#var attack = current_entity.attacks[0]
+	#var damage = attack["damage"]
+#
+#
+	#show_action_box(current_entity, attack["name"], target)
+#
+	#current_entity.play_anim("attack")
+	#await current_entity.sprite.animation_finished
+	#target.take_damage(damage)
+	#current_entity.play_anim("idle")
+#
+	#await get_tree().create_timer(0.5).timeout
+#
+	#end_turn()
 
 
 # -------------------------
@@ -235,11 +317,11 @@ func end_turn():
 	clear_attack_options()
 	set_process_input(false)
 
-	if check_battle_end():
-		return
-
-	current_turn_index += 1
-	next_turn()
+	#if check_battle_end():
+		#return
+#
+	#current_turn_index += 1
+	#next_turn()
 
 
 func check_battle_end() -> bool:
@@ -247,11 +329,15 @@ func check_battle_end() -> bool:
 	var enemies_alive = get_alive_enemies()
 
 	if players_alive.is_empty():
-		print("Defeat...")
+		battle_ui.hide_all()
+		battle_ui.show_action_text("Defeat...")
+		set_process_input(false)
 		return true
 
 	if enemies_alive.is_empty():
-		print("Victory!")
+		battle_ui.hide_all()
+		battle_ui.show_action_text("Victory!")
+		set_process_input(false)
 		return true
 
 	return false
@@ -275,45 +361,125 @@ func confirm_target():
 		return
 
 	var target = targets[selected_target_index]
+	var actor = current_entity
 
-	selecting_target = false
+	#selecting_target = false
 
 	# Hide pointers
 	for e in entities:
 		e.hide_pointer()
+		
+	# queueing action instead of executing act immediately
+	var queued_action = pending_attack.duplicate(true)
+	queued_action["actor"] = actor
+	queued_action["target"] = target
 
-	execute_action(target)
+	player_action_queue.append(queued_action)
+	pending_attack = {}
 
-
-func execute_action(target: Entity):
 	battle_ui.hide_all()
+	advance_player_selection()
+		
+	#execute_action(target)
 
-	# ATTACK
-	if pending_attack.has("damage"):
-		var damage = pending_attack["damage"]
 
-		show_action_box(current_entity, pending_attack["name"], target)
+# -------------------------
+# PLAYER ACTION EXECUTION
+# -------------------------
+func execute_player_phase():
+	for action in player_action_queue:
+		var actor: Entity = action["actor"]
 
-		print(pending_attack)
+		if not actor.is_alive():
+			continue
 
-		current_entity.play_anim(pending_attack["animation"])
-		await current_entity.sprite.animation_finished
+		if action.get("type", "") == "defend":
+			actor.hasDefended = true
+			actor.show_shield()
+			battle_ui.show_action_text("%s defends" % actor.unit_name)
+			await get_tree().create_timer(0.8).timeout
+			battle_ui.hide_action_text()
 
-		target.take_damage(damage)
+		elif action.has("damage"):
+			var target: Entity = action["target"]
+			if target == null or not target.is_alive():
+				var enemies = get_alive_enemies()
+				if enemies.is_empty():
+					return
+				target = enemies[0]
 
-	# HEAL
-	elif pending_attack.has("heal"):
-		show_action_box(current_entity, "Heal", target)
+			show_action_box(actor, action["name"], target)
 
-		current_entity.play_anim(pending_attack["animation"])
-		await current_entity.sprite.animation_finished
+			actor.play_anim(action["animation"])
+			await actor.sprite.animation_finished
 
-		target.heal(pending_attack["heal"])
+			await target.take_damage(action["damage"])
 
-	current_entity.play_anim("idle")
+			actor.play_anim("idle")
+			await get_tree().create_timer(1.0).timeout
+			battle_ui.hide_action_text()
 
-	await get_tree().create_timer(1.0).timeout
+		elif action.has("heal"):
+			var target: Entity = action["target"]
+			if target == null or not target.is_alive():
+				var allies = get_alive_players()
+				if allies.is_empty():
+					return
+				target = allies[0]
 
-	battle_ui.hide_action_text()
+			battle_ui.show_action_text(
+				"%s uses Heal on %s\n%s will skip next turn" %
+				[actor.unit_name, target.unit_name, actor.unit_name]
+			)
 
-	end_turn()
+			actor.play_anim(action["animation"])
+			await actor.sprite.animation_finished
+
+			target.heal(action["heal"])
+			actor.skip_next_turn = true
+
+			actor.play_anim("idle")
+			await get_tree().create_timer(1.0).timeout
+			battle_ui.hide_action_text()
+
+		if check_battle_end():
+			return
+
+#func execute_action(target: Entity):
+	#battle_ui.hide_all()
+	#
+	## ATTACK
+	#if pending_attack.has("damage"):
+		#var damage = pending_attack["damage"]
+		#
+		#show_action_box(current_entity, pending_attack["name"], target)
+		#
+		#print(pending_attack)
+		#
+		#current_entity.play_anim(pending_attack["animation"])
+		#await current_entity.sprite.animation_finished
+		#
+		#target.take_damage(damage)
+		#
+	## HEAL
+	#elif pending_attack.has("heal"):
+		#battle_ui.show_action_text(
+			#"%s uses Heal on %s\n%s will skip next turn" %
+			#[current_entity.unit_name, target.unit_name, current_entity.unit_name]
+		#)
+		#
+		#current_entity.play_anim(pending_attack["animation"])
+		#await current_entity.sprite.animation_finished
+#
+		#target.heal(pending_attack["heal"])
+		#current_entity.skip_next_turn = true
+		#
+	#current_entity.play_anim("idle")
+	#
+	#await get_tree().create_timer(1.0).timeout
+	#
+	#battle_ui.hide_action_text()
+	#
+	#pending_attack = {}
+	#
+	#end_turn()

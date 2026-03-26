@@ -50,7 +50,7 @@ script = ExtResource("7_272bh")
 attack_option_scene = ExtResource("8_5vw27")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 335.0
 offset_top = 210.0
 offset_right = 653.0

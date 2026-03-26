@@ -12,23 +12,31 @@ extends Node2D
 @onready var sprite: AnimatedSprite2D = $sprite
 @onready var hp_bar: ProgressBar = $hpbar
 @onready var pointer: Sprite2D = $focus
+@onready var shield: Sprite2D = $shield
 
-var hasDefended: bool
+var hasDefended: bool = false
+var skip_next_turn: bool = false
 
 func _ready():
 	hp_bar.max_value = max_hp
 	hp_bar.value = hp
 	pointer.visible = false
+	shield.visible = false
 
 func take_damage(amount: int):
-	if not hasDefended and hp != 0:
+	if hasDefended:
+		amount = int(ceil(amount / 2.0))
+	
+	if hp != 0:
 		hp -= amount
 		if hp < 0:
 			hp = 0
 			play_anim("death")
 			await sprite.animation_finished
 		hp_bar.value = hp
+	
 	hasDefended = false
+	hide_shield()
 
 func show_pointer():
 	pointer.visible = true
@@ -36,6 +44,12 @@ func show_pointer():
 func hide_pointer():
 	pointer.visible = false
 
+func show_shield():
+	shield.visible = true
+
+func hide_shield():
+	shield.visible = false
+	
 func is_alive() -> bool:
 	return hp > 0
 
