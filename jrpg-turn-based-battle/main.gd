@@ -1,5 +1,10 @@
 extends Node2D
 
+const DAMAGE_ROLL_MIN := 0.85
+const DAMAGE_ROLL_MAX := 1.15
+const CRIT_CHANCE := 0.15
+const CRIT_MULTIPLIER := 1.5
+
 @export var battle_ui: BattleUI
 @export var entities: Array[Entity]
 @export var attack_container: VBoxContainer
@@ -23,6 +28,7 @@ var choosing_player_actions: bool = true
 
 
 func _ready():
+	randomize()
 	setup_teams()
 
 	battle_ui.attack_pressed.connect(_on_attack_pressed)
@@ -128,6 +134,7 @@ func choose_next_player_action():
 		await execute_enemy_phase()
 		if check_battle_end():
 			return
+		clear_all_defends()
 		start_player_phase()
 		return
 
@@ -208,11 +215,9 @@ func update_target_pointer():
 
 	# selected_target_index = clamp(selected_target_index, 0, targets.size() - 1)
 
-	# Hide all pointers first
 	for e in entities:
 		e.hide_pointer()
 
-	# Show selected
 	targets[selected_target_index].show_pointer()
 	print(targets[selected_target_index])
 
@@ -252,10 +257,21 @@ func execute_enemy_phase():
 			return
 
 		var target = targets.pick_random()
-		var attack = enemy.attacks[0]
-		var damage = attack["damage"]
-
-		show_action_box(enemy, attack["name"], target)
+		var attack = enemy.attacks.pick_random()
+		var damage_result = roll_damage(attack["damage"])
+		var damage = damage_result["damage"]
+		var is_crit = damage_result["is_crit"]
+		
+		if is_crit:
+			battle_ui.show_action_text(
+				"%s uses %s on %s\nCritical Hit! %d damage" %
+				[enemy.unit_name, attack["name"], target.unit_name, damage]
+			)
+		else:
+			battle_ui.show_action_text(
+				"%s uses %s on %s\n%d damage" %
+				[enemy.unit_name, attack["name"], target.unit_name, damage]
+			)
 
 		enemy.play_anim(attack["animation"])
 		await enemy.sprite.animation_finished
@@ -309,6 +325,23 @@ func get_alive_enemies() -> Array:
 	# print(enemy_team)
 	return enemy_team.filter(func(e): return e.is_alive())
 
+func roll_damage(base_damage: int) -> Dictionary:
+	var roll = randf_range(DAMAGE_ROLL_MIN, DAMAGE_ROLL_MAX)
+	var damage = int(round(base_damage * roll))
+
+	var is_crit = randf() < CRIT_CHANCE
+	if is_crit:
+		damage = int(round(damage * CRIT_MULTIPLIER))
+
+	return {
+		"damage": max(damage, 1),
+		"is_crit": is_crit
+	}
+
+func clear_all_defends():
+	for e in entities:
+		e.hasDefended = false
+		e.hide_shield()
 
 # -------------------------
 # End Turn / Win Check
@@ -385,7 +418,7 @@ func confirm_target():
 
 
 # -------------------------
-# PLAYER ACTION EXECUTION
+# Player Action Execution (After all actions chosen)
 # -------------------------
 func execute_player_phase():
 	for action in player_action_queue:
@@ -409,17 +442,30 @@ func execute_player_phase():
 					return
 				target = enemies[0]
 
-			show_action_box(actor, action["name"], target)
+			var damage_result = roll_damage(action["damage"])
+			var final_damage = damage_result["damage"]
+			var is_crit = damage_result["is_crit"]
+
+			if is_crit:
+				battle_ui.show_action_text(
+					"%s uses %s on %s\nCritical Hit! %d damage" %
+					[actor.unit_name, action["name"], target.unit_name, final_damage]
+				)
+			else:
+				battle_ui.show_action_text(
+					"%s uses %s on %s\n%d damage" %
+					[actor.unit_name, action["name"], target.unit_name, final_damage]
+				)
 
 			actor.play_anim(action["animation"])
 			await actor.sprite.animation_finished
 
-			await target.take_damage(action["damage"])
+			await target.take_damage(final_damage)
 
 			actor.play_anim("idle")
 			await get_tree().create_timer(1.0).timeout
 			battle_ui.hide_action_text()
-
+	
 		elif action.has("heal"):
 			var target: Entity = action["target"]
 			if target == null or not target.is_alive():
