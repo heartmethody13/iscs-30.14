@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c10gn5gwamwk0"]
+
+[ext_resource type="Script" uid="uid://d2y8kw1q2evcj" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://cem8pxmcf8ftp" path="res://player/camera.gd" id="2_rkbax"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g312j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rkbax"]
+margin = 0.01
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g1dw6"]
+margin = 0.01
+radius = 0.1
+
+[node name="player" type="CharacterBody3D" unique_id=1708945768]
+collision_layer = 2
+script = ExtResource("1_oul6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=966049783]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_oul6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=521943938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_g312j")
+
+[node name="Camera" type="Node3D" parent="." unique_id=2061365001 node_paths=PackedStringArray("character", "edge_spring_arm", "rear_spring_arm", "camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 0)
+script = ExtResource("2_rkbax")
+character = NodePath("..")
+edge_spring_arm = NodePath("EdgeSpringArm")
+rear_spring_arm = NodePath("EdgeSpringArm/RearSpringArm")
+camera = NodePath("EdgeSpringArm/RearSpringArm/Camera3D")
+
+[node name="EdgeSpringArm" type="SpringArm3D" parent="Camera" unique_id=34985187]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_rkbax")
+
+[node name="RearSpringArm" type="SpringArm3D" parent="Camera/EdgeSpringArm" unique_id=1332224267]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_g1dw6")
+spring_length = 1.5
+
+[node name="Camera3D" type="Camera3D" parent="Camera/EdgeSpringArm/RearSpringArm" unique_id=824541630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, -0.225, 2)

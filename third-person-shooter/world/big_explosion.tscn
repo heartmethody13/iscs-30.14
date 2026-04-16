@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bvgj6m0t520g2"]
+
+[node name="big_explosion" type="Node3D" unique_id=1604297074]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1686638967]

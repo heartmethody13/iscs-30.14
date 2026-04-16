@@ -1,0 +1,20 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1774479775
+background.jpg::CompressedTexture2D::6398260002532758198::1774458229::1774479777::1::::<><><>0<>0<>36172a05c2886876037c2346c9ab28ad<>res://.godot/imported/background.jpg-79b88fb6fb9ac2ea3dfbdde6ce8e779f.ctex::
+hand_cursor0000.png::CompressedTexture2D::3913812409934182723::1774458229::1774479777::1::::<><><>0<>0<>b65a740872b86f561fa4b76ae9922836<>res://.godot/imported/hand_cursor0000.png-04677ffb6c0923185f7b3a6ce8c56418.ctex::
+icon.svg::CompressedTexture2D::5306768717094264337::1774458229::1774479777::1::::<><><>0<>0<>93fbb94a131c5926efa26cf09ad40056<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+MAGE.png::CompressedTexture2D::6874400250734049276::1774458229::1774479777::1::::<><><>0<>0<>6537334dae36a53ea79d58c014c92b46<>res://.godot/imported/MAGE.png-17920d0887e03e965a36b1481c69934b.ctex::
+main.tscn::PackedScene::8161499723726964117::1774458229::0::1::::<><><>0<>0<><>::uid://ci0lhp440d7l8::::res://wizard.tscn<>uid://bpv8cuk6f74l4::::res://wood.jpg<>uid://c4fxs2wuodl6b::::res://nomad.tscn<>uid://v3hhqbam47ro::::res://ninja.tscn<>uid://dcpf44h0w6eqw::::res://viking.tscn<>uid://bgsgil2txcoox::::res://ui.gd
+Ninja HD Sample.png::CompressedTexture2D::1680069040132862991::1774458229::1774479777::1::::<><><>0<>0<>f18c3055ed6c7793b77a11c2674d08b6<>res://.godot/imported/Ninja HD Sample.png-49f03e95f26b492fe4abfdffffb9a750.ctex::
+ninja.gd::GDScript::5018792983537038527::1774458229::0::1::::<>Node2D<><>0<>0<><>::
+ninja.tscn::PackedScene::1532206654954673464::1774458229::0::1::::<><><>0<>0<><>::uid://x63qylav0ykd::::res://Ninja HD Sample.png<>uid://cdre108ql4vat::::res://ninja.gd<>uid://bv046h4y2ic1x::::res://hand_cursor0000.png
+Nomad3_HD_NoBg.png::CompressedTexture2D::6038588248257165819::1774458229::1774479777::1::::<><><>0<>0<>2b0b0a78a896b5158b06dcced2ae6aaa<>res://.godot/imported/Nomad3_HD_NoBg.png-f97e9f6833b7f88d32b0866ba167de48.ctex::
+nomad.gd::GDScript::8971126265788335238::1774458229::0::1::::<>Node2D<><>0<>0<><>::
+nomad.tscn::PackedScene::6820069809827056835::1774458229::0::1::::<><><>0<>0<><>::uid://d02xeytkrpj4a::::res://nomad.gd<>uid://csbewwelb8ddr::::res://Nomad3_HD_NoBg.png<>uid://bv046h4y2ic1x::::res://hand_cursor0000.png
+ui.gd::GDScript::2845091753762884171::1774458229::0::1::::<>Control<><>0<>0<><>::
+viking2.png::CompressedTexture2D::605344954913892735::1774458229::1774479777::1::::<><><>0<>0<>1dde64732f8e407b8041423c56946a09<>res://.godot/imported/viking2.png-8c770d38f1d3a95761c11481aa9c48fa.ctex::
+viking.gd::GDScript::2491618612025671765::1774458229::0::1::::<>Node2D<><>0<>0<><>::
+viking.tscn::PackedScene::7330962312810632574::1774458229::0::1::::<><><>0<>0<><>::uid://bbq7uhivfgien::::res://viking.gd<>uid://ivh7cckv83st::::res://viking2.png<>uid://bv046h4y2ic1x::::res://hand_cursor0000.png
+wizard.gd::GDScript::5839253869624184991::1774458229::0::1::::<>Node2D<><>0<>0<><>::
+wizard.tscn::PackedScene::5386642781820492191::1774458229::0::1::::<><><>0<>0<><>::uid://c47amreyqdoue::::res://MAGE.png<>uid://cpgtwm1iesnet::::res://wizard.gd<>uid://bv046h4y2ic1x::::res://hand_cursor0000.png
+wood.jpg::CompressedTexture2D::3484613570779463735::1774458229::1774479777::1::::<><><>0<>0<>32fe14542bebf49d7fac686b2e9e23f3<>res://.godot/imported/wood.jpg-1829acd2d97a5721bb28a2821883856e.ctex::

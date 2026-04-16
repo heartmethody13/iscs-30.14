@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bxuyw81xh4d1d"]
+
+[ext_resource type="PackedScene" uid="uid://c10gn5gwamwk0" path="res://player/player.tscn" id="1_6xmxd"]
+[ext_resource type="Texture2D" uid="uid://dtjn63gp1xbby" path="res://assets/tiny_treats_grass_texture.png" id="2_tcf2h"]
+[ext_resource type="Script" uid="uid://bi3x6hfgap3bg" path="res://world/bullet.gd" id="3_4717r"]
+[ext_resource type="Script" uid="uid://0ujmfor5y3jy" path="res://world/enemy.gd" id="4_h5o24"]
+[ext_resource type="Script" uid="uid://csed8uncup2db" path="res://world/explosion.gd" id="5_mmdvd"]
+
+[sub_resource type="Environment" id="Environment_tcf2h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4717r"]
+albedo_texture = ExtResource("2_tcf2h")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h5o24"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mmdvd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fn3g3"]
+
+[node name="world" type="Node3D" unique_id=410643261]
+
+[node name="player" parent="." unique_id=1708945768 instance=ExtResource("1_6xmxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=282515011]
+environment = SubResource("Environment_tcf2h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1656639325]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 5.244705, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=606748534]
+gi_mode = 2
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=771823686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.951135, 0)
+size = Vector3(30, 12.002271, 31)
+material = SubResource("StandardMaterial3D_4717r")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1109948040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.554358, 0)
+operation = 2
+size = Vector3(29, 15.008716, 29)
+material = SubResource("StandardMaterial3D_4717r")
+
+[node name="bullet" type="Node3D" parent="." unique_id=1017718597]
+script = ExtResource("3_4717r")
+
+[node name="enemy" type="StaticBody3D" parent="." unique_id=1071695848]
+transform = Transform3D(6, 0, 0, 0, 5, 0, 0, 0, 1, 0, 2.55, 0)
+collision_layer = 4
+physics_material_override = SubResource("PhysicsMaterial_h5o24")
+script = ExtResource("4_h5o24")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy" unique_id=1834474041]
+shape = SubResource("BoxShape3D_mmdvd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy" unique_id=725330806]
+mesh = SubResource("BoxMesh_fn3g3")
+
+[node name="explosion" type="Node3D" parent="." unique_id=1859392771]
+script = ExtResource("5_mmdvd")

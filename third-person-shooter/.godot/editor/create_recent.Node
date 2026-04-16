@@ -1,0 +1,15 @@
+RayCast3D
+AnimatedSprite3D
+CharacterBody3D
+Sprite3D
+CollisionShape3D
+StaticBody3D
+CSGBox3D
+CSGCombiner3D
+Node3D
+MeshInstance3D
+ShapeCast3D
+SpringArm3D
+DirectionalLight3D
+WorldEnvironment
+Camera3D
