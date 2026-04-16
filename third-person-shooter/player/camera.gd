@@ -175,4 +175,6 @@ func exit_sprint() -> void:
 func shoot() -> void:
 	var new_bullet: Bullet = BULLET.instantiate()
 	get_tree().current_scene.add_child(new_bullet)
-	new_bullet.initialize(camera.global_position, camera.global_basis.z, 100)
+	var forward: Vector3 = -camera.global_basis.z
+	var spawn_pos: Vector3 = camera.global_position + forward * 1.5
+	new_bullet.initialize(spawn_pos, forward, 20)
