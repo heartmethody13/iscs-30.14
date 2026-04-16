@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cy4nk2uerwb8t"]
+
+[ext_resource type="Texture2D" uid="uid://ds8vllmfe436w" path="res://dirt.jpg" id="1_fj7yv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
+sky_top_color = Color(0.22736678, 0.50512236, 0.6554616, 1)
+sky_horizon_color = Color(0.71028966, 0.7519829, 0.7618451, 1)
+ground_bottom_color = Color(0.32513395, 0.21415144, 0.10326093, 1)
+ground_horizon_color = Color(0.71028966, 0.7519829, 0.7618451, 1)
+
+[sub_resource type="Sky" id="Sky_f3sb7"]
+sky_material = SubResource("ProceduralSkyMaterial_gv5m4")
+
+[sub_resource type="Environment" id="Environment_fj7yv"]
+background_mode = 2
+sky = SubResource("Sky_f3sb7")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gv5m4"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gv5m4"]
+size = Vector2(200, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj7yv"]
+albedo_texture = ExtResource("1_fj7yv")
+
+[node name="world" type="Node" unique_id=603070116]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1997153918]
+environment = SubResource("Environment_fj7yv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1319737357]
+transform = Transform3D(-0.89955777, 0.43680185, 1.9093216e-08, 0, -4.371139e-08, 1, 0.43680185, 0.89955777, 3.932092e-08, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1192525476]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=528323069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5145893, 0.8643725, 1.1883159)
+
+[node name="shooter_body" type="MeshInstance3D" parent="Node3D" unique_id=1077342942]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18602425, 0)
+mesh = SubResource("CapsuleMesh_gv5m4")
+
+[node name="ground" type="MeshInstance3D" parent="Node3D" unique_id=475716607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011, -0.43460947, 0)
+mesh = SubResource("PlaneMesh_gv5m4")
+surface_material_override/0 = SubResource("StandardMaterial3D_fj7yv")
