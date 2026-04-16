@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d2y8kw1q2evcj" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://cem8pxmcf8ftp" path="res://player/camera.gd" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://bi3x6hfgap3bg" path="res://world/bullet.gd" id="3_g1dw6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
 
@@ -45,3 +46,7 @@ spring_length = 1.5
 
 [node name="Camera3D" type="Camera3D" parent="Camera/EdgeSpringArm/RearSpringArm" unique_id=824541630]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, -0.225, 2)
+
+[node name="bullet" type="Node3D" parent="." unique_id=1949074695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+script = ExtResource("3_g1dw6")

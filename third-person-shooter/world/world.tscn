@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://c10gn5gwamwk0" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://dtjn63gp1xbby" path="res://assets/tiny_treats_grass_texture.png" id="2_tcf2h"]
-[ext_resource type="Script" uid="uid://bi3x6hfgap3bg" path="res://world/bullet.gd" id="3_4717r"]
 [ext_resource type="Script" uid="uid://0ujmfor5y3jy" path="res://world/enemy.gd" id="4_h5o24"]
 [ext_resource type="PackedScene" uid="uid://2pywjpcux6un" path="res://assets/bird.gltf" id="5_ai45w"]
 [ext_resource type="Script" uid="uid://csed8uncup2db" path="res://world/explosion.gd" id="5_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://deypg0acuhxqb" path="res://world/explosion.tscn" id="5_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://bvgj6m0t520g2" path="res://world/big_explosion.tscn" id="6_ai45w"]
+[ext_resource type="Texture2D" uid="uid://2a3cxak8kn8e" path="res://assets/explosion/bubble_explo1.png" id="9_4papg"]
 
 [sub_resource type="Environment" id="Environment_tcf2h"]
 
@@ -42,9 +42,6 @@ operation = 2
 size = Vector3(29, 15.008716, 29)
 material = SubResource("StandardMaterial3D_4717r")
 
-[node name="bullet" type="Node3D" parent="." unique_id=1017718597]
-script = ExtResource("3_4717r")
-
 [node name="enemy" type="CharacterBody3D" parent="." unique_id=2121254945]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7021558, 2.5134957)
 collision_layer = 4
@@ -65,3 +62,4 @@ transform = Transform3D(1.64, 0, 0, 0, 1.64, 0, 0, 0, 1.64, 0, 0, 0)
 script = ExtResource("5_mmdvd")
 
 [node name="Sprite3D2" type="Sprite3D" parent="big_explosion" unique_id=549569853]
+texture = ExtResource("9_4papg")

@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var health: int = 3
+var health: int = 4
 var _big_explosion_scene: PackedScene = preload("res://world/big_explosion.tscn")
 
 # Called when the node enters the scene tree for the first time.

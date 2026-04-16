@@ -1,5 +1,9 @@
 [gd_scene format=3 uid="uid://bvgj6m0t520g2"]
 
+[ext_resource type="Texture2D" uid="uid://2a3cxak8kn8e" path="res://assets/explosion/bubble_explo1.png" id="1_nwnh4"]
+
 [node name="big_explosion" type="Node3D" unique_id=1604297074]
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1686638967]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+texture = ExtResource("1_nwnh4")

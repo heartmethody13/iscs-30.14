@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://deypg0acuhxqb"]
 
 [ext_resource type="Script" uid="uid://csed8uncup2db" path="res://world/explosion.gd" id="1_cjlae"]
+[ext_resource type="Texture2D" uid="uid://2a3cxak8kn8e" path="res://assets/explosion/bubble_explo1.png" id="2_fesh0"]
 
 [node name="explosion" type="Node3D" unique_id=1077346518]
 script = ExtResource("1_cjlae")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1851357613]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+texture = ExtResource("2_fesh0")

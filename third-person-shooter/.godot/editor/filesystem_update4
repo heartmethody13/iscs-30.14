@@ -1,1 +1,6 @@
 res://player/player.tscn
+res://world/world.tscn
+res://world/big_explosion.tscn
+res://world/explosion.tscn
+res://world/explosion.gd
+res://world/enemy.gd
