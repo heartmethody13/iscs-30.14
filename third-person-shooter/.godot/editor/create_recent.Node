@@ -1,5 +1,7 @@
-Sprite3D
+MeshInstance3D
+MultiMeshInstance3D
 RayCast3D
+Sprite3D
 AnimatedSprite3D
 CharacterBody3D
 CollisionShape3D
@@ -7,8 +9,6 @@ StaticBody3D
 CSGBox3D
 CSGCombiner3D
 Node3D
-MeshInstance3D
 ShapeCast3D
 SpringArm3D
 DirectionalLight3D
-WorldEnvironment

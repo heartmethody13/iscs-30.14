@@ -1,10 +1,12 @@
 extends CharacterBody3D
 
+#const BULLET = preload("res://player/bullet.tscn") 
 
 const SPEED: float = 6.0
 const SPRINT_SPEED: float = 12
 const JUMP_VELOCITY: float = 5.5
 
+#@onready var camera: Camera3D = $Camera/EdgeSpringArm/RearSpringArm/Camera3D
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -31,5 +33,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func shoot() -> void:
-	pass
+#func shoot() -> void:
+	#var new_bullet: Bullet = BULLET.instantiate()
+	#get_tree().current_scene.add_child(new_bullet)
+	#new_bullet.initialize(camera.global_position, camera.global_basis.z, 800)

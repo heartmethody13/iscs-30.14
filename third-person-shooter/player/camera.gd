@@ -14,6 +14,8 @@ extends Node3D
 @export var sprint_tween_speed: float = 0.5
 @export var sprint_fov: float = 95
 
+const BULLET = preload("res://player/bullet.tscn") 
+
 var camera_rotation: Vector2 = Vector2.ZERO
 var mouse_sensitivity: float = 0.001
 var max_y_rotation: float = 1.2
@@ -26,6 +28,9 @@ var current_shoulder: int = CameraAlignment.RIGHT
 @onready var default_edge_spring_arm_length: float = edge_spring_arm.spring_length
 @onready var default_rear_spring_arm_length: float = rear_spring_arm.spring_length
 @onready var default_camera_fov: float = camera.fov
+
+#@onready var camera_3d: Camera3D = $EdgeSpringArm/RearSpringArm/Camera3D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -61,6 +66,9 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_released("sprint"):
 		exit_sprint()
+	
+	if event.is_action_pressed("shoot"):
+		shoot()
 
 func look(mouse_movement: Vector2) -> void:
 	camera_rotation += mouse_movement
@@ -162,3 +170,9 @@ func exit_sprint() -> void:
 	camera_tween.tween_property(camera, "fov", default_camera_fov, sprint_tween_speed)
 	camera_tween.tween_property(edge_spring_arm, "spring_length", default_edge_spring_arm_length * current_shoulder, aim_speed)
 	camera_tween.tween_property(rear_spring_arm, "spring_length", default_rear_spring_arm_length, aim_speed)
+
+
+func shoot() -> void:
+	var new_bullet: Bullet = BULLET.instantiate()
+	get_tree().current_scene.add_child(new_bullet)
+	new_bullet.initialize(camera.global_position, camera.global_basis.z, 100)

@@ -1,6 +1,9 @@
 res://player/player.tscn
+res://player/camera.gd
+res://player/bullet.tscn
+res://world/bullet.gd
+res://player/player.gd
+res://player/bullet.gd
+res://player/bullet_scene.tscn
+res://player/bullet_scene.gd
 res://world/world.tscn
-res://world/big_explosion.tscn
-res://world/explosion.tscn
-res://world/explosion.gd
-res://world/enemy.gd

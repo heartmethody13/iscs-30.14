@@ -1,0 +1,9 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1776311934
+bubble.png::CompressedTexture2D::2640215699526898231::1776311905::1776311936::1::::<><><>0<>0<>ce3b9f54df7b8fca7ec7283557a015b5<>res://.godot/imported/bubble.png-3dc4d46c6bed7b70ac6f4b3bfb630a9b.ctex::
+galaxy.png::CompressedTexture2D::3938033184050319114::1776311905::1776311936::1::::<><><>0<>0<>3f6d1296efa4df978caab5b75ebf31b6<>res://.godot/imported/galaxy.png-826bf465bd9a246a30eb75141ad1440f.ctex::
+icon.svg::CompressedTexture2D::3627276536379104781::1776311905::1776311936::1::::<><><>0<>0<>7f999a8ac182bd65e8b77064b32ef933<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+node_2d.tscn::PackedScene::7810686156216792881::1776311905::0::1::::<><><>0<>0<><>::uid://bho6n2h5ml4vl::::res://ship7.png<>uid://baelktluidufu::::res://player.gd<>uid://c6ybkgxn7rdu3::::res://parallax_2d.gd<>uid://bwdu3i38yw0n3::::res://galaxy.png
+parallax_2d.gd::GDScript::6998319512499154104::1776311905::0::1::::<>ParallaxBackground<><>0<>0<><>::
+player.gd::GDScript::2395364955424861926::1776311905::0::1::::<>CharacterBody2D<><>0<>0<><>::
+ship7.png::CompressedTexture2D::2908550750136338785::1776311905::1776311936::1::::<><><>0<>0<>b13f2f37024d2dd1326f144519efdce7<>res://.godot/imported/ship7.png-3c8358129a200363e7134dc875ceeefa.ctex::
