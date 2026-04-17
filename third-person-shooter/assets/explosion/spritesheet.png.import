@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw7ttq6krs0xi"
-path.s3tc="res://.godot/imported/bubble_explo2.png-1551271179f158bc5c8547c55b59cb39.s3tc.ctex"
+uid="uid://c7tragjf5lu0i"
+path.s3tc="res://.godot/imported/spritesheet.png-57a67e8caf89ed53e3c4074d0aa67679.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/explosion/bubble_explo2.png"
-dest_files=["res://.godot/imported/bubble_explo2.png-1551271179f158bc5c8547c55b59cb39.s3tc.ctex"]
+source_file="res://assets/explosion/spritesheet.png"
+dest_files=["res://.godot/imported/spritesheet.png-57a67e8caf89ed53e3c4074d0aa67679.s3tc.ctex"]
 
 [params]
 

@@ -4,10 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dtjn63gp1xbby" path="res://assets/tiny_treats_grass_texture.png" id="2_tcf2h"]
 [ext_resource type="Script" uid="uid://0ujmfor5y3jy" path="res://world/enemy.gd" id="4_h5o24"]
 [ext_resource type="PackedScene" uid="uid://2pywjpcux6un" path="res://assets/bird.gltf" id="5_ai45w"]
-[ext_resource type="Script" uid="uid://csed8uncup2db" path="res://world/explosion.gd" id="5_mmdvd"]
-[ext_resource type="PackedScene" uid="uid://deypg0acuhxqb" path="res://world/explosion.tscn" id="5_sc4t8"]
-[ext_resource type="PackedScene" uid="uid://bvgj6m0t520g2" path="res://world/big_explosion.tscn" id="6_ai45w"]
-[ext_resource type="Texture2D" uid="uid://2a3cxak8kn8e" path="res://assets/explosion/bubble_explo1.png" id="9_4papg"]
+[ext_resource type="Texture2D" uid="uid://cpod3gwjovw5g" path="res://assets/explosion/crosshair.png" id="5_mmdvd"]
 
 [sub_resource type="Environment" id="Environment_tcf2h"]
 
@@ -56,10 +53,75 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33184743, 0)
 [node name="bird2" parent="enemy/Sprite3D" unique_id=1025754073 instance=ExtResource("5_ai45w")]
 transform = Transform3D(1.64, 0, 0, 0, 1.64, 0, 0, 0, 1.64, 0, 0, 0)
 
-[node name="explosion" parent="." unique_id=1077346518 instance=ExtResource("5_sc4t8")]
+[node name="enemy2" type="CharacterBody3D" parent="." unique_id=731312535]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.451894, 2.7021558, 2.5134957)
+collision_layer = 4
+script = ExtResource("4_h5o24")
 
-[node name="big_explosion" parent="." unique_id=1604297074 instance=ExtResource("6_ai45w")]
-script = ExtResource("5_mmdvd")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy2" unique_id=626793617]
+shape = SubResource("SphereShape3D_4papg")
 
-[node name="Sprite3D2" type="Sprite3D" parent="big_explosion" unique_id=549569853]
-texture = ExtResource("9_4papg")
+[node name="Sprite3D" type="Sprite3D" parent="enemy2" unique_id=1692951617]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33184743, 0)
+
+[node name="bird2" parent="enemy2/Sprite3D" unique_id=1512989483 instance=ExtResource("5_ai45w")]
+transform = Transform3D(1.64, 0, 0, 0, 1.64, 0, 0, 0, 1.64, 0, 0, 0)
+
+[node name="enemy3" type="CharacterBody3D" parent="." unique_id=1382657240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.366109, 2.7021558, 2.5134957)
+collision_layer = 4
+script = ExtResource("4_h5o24")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy3" unique_id=968550133]
+shape = SubResource("SphereShape3D_4papg")
+
+[node name="Sprite3D" type="Sprite3D" parent="enemy3" unique_id=161230810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33184743, 0)
+
+[node name="bird2" parent="enemy3/Sprite3D" unique_id=1175733395 instance=ExtResource("5_ai45w")]
+transform = Transform3D(1.64, 0, 0, 0, 1.64, 0, 0, 0, 1.64, 0, 0, 0)
+
+[node name="enemy4" type="CharacterBody3D" parent="." unique_id=149120827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.082906, 2.5134957)
+collision_layer = 4
+script = ExtResource("4_h5o24")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy4" unique_id=1386116590]
+shape = SubResource("SphereShape3D_4papg")
+
+[node name="Sprite3D" type="Sprite3D" parent="enemy4" unique_id=73325285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33184743, 0)
+
+[node name="bird2" parent="enemy4/Sprite3D" unique_id=372099231 instance=ExtResource("5_ai45w")]
+transform = Transform3D(1.64, 0, 0, 0, 1.64, 0, 0, 0, 1.64, 0, 0, 0)
+
+[node name="enemy5" type="CharacterBody3D" parent="." unique_id=1716400291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.088708, 4.0485945, 2.5134957)
+collision_layer = 4
+script = ExtResource("4_h5o24")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy5" unique_id=663704090]
+shape = SubResource("SphereShape3D_4papg")
+
+[node name="Sprite3D" type="Sprite3D" parent="enemy5" unique_id=683929321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33184743, 0)
+
+[node name="bird2" parent="enemy5/Sprite3D" unique_id=1428432480 instance=ExtResource("5_ai45w")]
+transform = Transform3D(1.64, 0, 0, 0, 1.64, 0, 0, 0, 1.64, 0, 0, 0)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1330462440]
+
+[node name="crosshair" type="TextureRect" parent="HUD" unique_id=287500994]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_mmdvd")
+expand_mode = 1

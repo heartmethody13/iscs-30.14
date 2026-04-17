@@ -4,6 +4,7 @@ extends Node3D
 @export var edge_spring_arm: SpringArm3D
 @export var rear_spring_arm: SpringArm3D
 @export var camera: Camera3D
+@export var bullet_spawnpoint: Node3D
 
 @export var camera_alignment_speed: float = 0.25
 @export var aim_rear_spring_length: float = 0.5
@@ -13,6 +14,9 @@ extends Node3D
 
 @export var sprint_tween_speed: float = 0.5
 @export var sprint_fov: float = 95
+
+@export var aim_ray_length: float = 1000.0
+@export var min_empty_space_distance: float = 30.0
 
 const BULLET = preload("res://player/bullet.tscn") 
 
@@ -175,6 +179,44 @@ func exit_sprint() -> void:
 func shoot() -> void:
 	var new_bullet: Bullet = BULLET.instantiate()
 	get_tree().current_scene.add_child(new_bullet)
-	var forward: Vector3 = -camera.global_basis.z
-	var spawn_pos: Vector3 = camera.global_position + forward * 1.5
-	new_bullet.initialize(spawn_pos, forward, 20)
+
+	var target: Vector3 = get_aim_target()
+	var spawn_pos: Vector3 = bullet_spawnpoint.global_position
+	var direction: Vector3 = (target - spawn_pos).normalized()
+	
+	new_bullet.initialize(spawn_pos, direction, 20)
+	
+	#var forward: Vector3 = -camera.global_basis.z
+	#var spawn_pos: Vector3 = camera.global_position + forward * 1.5
+	#new_bullet.initialize(spawn_pos, forward, 20)
+
+
+func get_aim_target() -> Vector3:
+	var ray := get_screen_center_ray()
+	var start: Vector3 = ray["origin"]
+	var forward: Vector3 = ray["direction"]
+	var end: Vector3 = start + forward * 1000.0
+
+	var query := PhysicsRayQueryParameters3D.create(start, end)
+	query.exclude = [character]
+	query.collide_with_bodies = true
+	query.collide_with_areas = false
+
+	var result: Dictionary = get_world_3d().direct_space_state.intersect_ray(query)
+
+	if not result.is_empty():
+		return result["position"]
+
+	return start + forward * max(min_empty_space_distance, aim_ray_length)
+
+func get_screen_center_ray() -> Dictionary:
+	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	var screen_center: Vector2 = viewport_size * 0.5
+
+	var ray_origin: Vector3 = camera.project_ray_origin(screen_center)
+	var ray_direction: Vector3 = camera.project_ray_normal(screen_center).normalized()
+
+	return {
+		"origin": ray_origin,
+		"direction": ray_direction
+	}

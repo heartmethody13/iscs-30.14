@@ -1,6 +1,8 @@
 extends Node3D
 class_name Bullet
 
+var _small_explosion_scene: PackedScene = preload("res://world/explosion.tscn")
+
 var bullet_velocity: Vector3 = Vector3.ZERO
 var speed: float = 100.0
 var lifetime: float = 5.0
@@ -13,7 +15,7 @@ var gravity: Vector3
 
 var direction: Vector3 = Vector3.FORWARD
 
-#var explosion_scene: PackedScene = preload("res://world/explosion.tscn")
+var explosion_scene: PackedScene = preload("res://world/explosion.tscn")
 
 func initialize(start_position: Vector3, direction: Vector3, initial_speed: float) -> void:
 	global_position = start_position
@@ -23,7 +25,8 @@ func initialize(start_position: Vector3, direction: Vector3, initial_speed: floa
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	gravity = ProjectSettings.get_setting("physics/3d/default_gravity_vector") * ProjectSettings.get_setting("physics/3d/default_gravity")
+	pass
+	#gravity = ProjectSettings.get_setting("physics/3d/default_gravity_vector") * ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,7 +58,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		return
 	
-	bullet_velocity += gravity * delta
+	#bullet_velocity += gravity * delta
 	
 	var movement_distance = bullet_velocity.length() * delta
 	
@@ -66,14 +69,29 @@ func _physics_process(delta: float) -> void:
 		var collision_point = raycast.get_collision_point()
 		var collision_normal = raycast.get_collision_normal()
 		var collider = raycast.get_collider()
+		
+		print("bullet hit: ", collider)
+		print("collider class: ", collider.get_class() if collider else "none")
+		
 		global_position = collision_point
-		print("hit")
+		
+		if collider:
+			var exp: Node3D = _small_explosion_scene.instantiate()
+			exp.global_position = collision_point + collision_normal * 0.15
+			get_tree().current_scene.add_child(exp)
+
+			if collider.has_method("take_hit"):
+				collider.take_hit(collision_point)
+				print("Enemy Hit")
+		else:
+			print("no take_hit on collider\n")
+		
 		queue_free()
 		return
 	
 	global_position += bullet_velocity * delta
 
-#func _spawn_explosion(pos: Vector3) -> void:
-	#var exp: Node3D = explosion_scene.instantiate()
-	#exp.global_position = pos
-	#get_tree().current_scene.add_child(exp)
+func _spawn_explosion(pos: Vector3) -> void:
+	var exp: Node3D = explosion_scene.instantiate()
+	exp.global_position = pos
+	get_tree().current_scene.add_child(exp)
